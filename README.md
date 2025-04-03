@@ -7,4 +7,4 @@ The project utilises the following:
 * npm
   ```sh
   npm install
-  ```gt
+  ```sh
