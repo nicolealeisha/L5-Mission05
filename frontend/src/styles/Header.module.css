@@ -6,31 +6,40 @@ a{
     text-decoration: none;;
 }
 
+a:hover{
+    text-decoration: underline;
+}
+
 .topHeader{
     background-color:#F7F5F4;
-    color: #B9B7C1;
     display: flex;
     flex-direction: row;
     width: 100%;
+    padding-top: 10px;
 }
 
 .topNavbar{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
     width: 100%;
+}
+
+.topNavbar a{
+    color: #85807c;
+    font-size: 12px;
 }
 
 .topLeftNavList{
     display: flex;
-    gap: 20px; 
+    gap: 40px; 
+    padding-left: 20px;
 }
 
 .topRightNavList{
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+    padding-right: 20px;
 }
 
 .secHeader{
@@ -46,8 +55,27 @@ a{
     width: 100%;
 }
 
+.secNavbar a{
+    color: #44413D;
+    font-size: 16px;
+}
+
 .logo{
     max-width: 150px;
+}
+
+.faIcon{
+    padding: 0 5px;
+}
+
+.browseBorder{
+    border-right: 1px solid #44413D;
+    padding-right: 20px;
+}
+
+.navSearch{
+    border: none;
+    font-size: 16px;
 }
 
 .secLeftNavList{
