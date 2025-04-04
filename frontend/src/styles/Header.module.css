@@ -89,3 +89,34 @@ a:hover{
     gap: 20px;
 }
 
+.deskHide{
+    display: none;
+}
+
+/* Media Queries */
+
+@media (max-width: 320px) {
+
+    .topHeader{
+        display: none;
+    }
+
+    .logo {
+        content: url('/images/mob-logo.png'); 
+        height: auto;
+      }
+
+    .mobHide{
+        display: none;
+    }
+
+    .deskHide{
+        display: block;
+    }
+
+    .navItem{
+        justify-content: center;
+    }
+
+
+}

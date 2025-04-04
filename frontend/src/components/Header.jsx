@@ -31,14 +31,14 @@ function Header () {
                 <nav className={styles.secNavbar}>
                     <img className={styles.logo} src="/images/logo.png" alt="Trade Me Logo" />
                     <ul className={styles.secLeftNavList}>
-                        <li className={styles.navItem}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
                         <li className={styles.navItem}><FontAwesomeIcon icon={faMagnifyingGlass}  className={styles.faIcon} /><input className={styles.navSearch} type='text' placeholder='Search'></input></li>
                     </ul>
                     <ul className={styles.secRightNavList}>
                         <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
-                        <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>
-                        <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon}/>Start a listing</a></li>
-                        <li className={styles.navItem}><a href="/404">My Trade Me <FontAwesomeIcon icon={faCircleUser} className={styles.faIcon}/></a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon}/>Start a listing</a></li>
+                        <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`}/>My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`}/></a></li>
                     </ul>
                 </nav>
             </header>        
