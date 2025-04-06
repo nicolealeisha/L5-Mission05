@@ -8,6 +8,7 @@ const productSchema = mongoose.Schema({
     reserve_price: {type: Number},
     image: {type: String},
     category: {type: String},
+    subcategory: {type: String},
     location: {type: String},
     condition: {type: String},
     auction_start_date: {type: Date},

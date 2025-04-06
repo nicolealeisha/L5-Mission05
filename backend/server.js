@@ -1,9 +1,19 @@
 const mongoose = require('mongoose');
 const express = require('express');
-const productListingRoute = require('./routes/productListing');
+const cors = require('cors');
+
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+};
 
 const app = express();
 app.use(express.json()); 
+
+// Apply CORS middleware globally
+app.use(cors(corsOptions));
 
 // Map global promise - get rid of warning
 mongoose.Promise = global.Promise;
@@ -23,6 +33,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
 
 // Import model --  required here??
 const Product = require('./models/product');
+
+// Import routes
+const productListingRoute = require('./routes/productListing');
 
 // Set up routes
 app.use(productListingRoute);
