@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ListingBreadcrumb from '../components/ListingBreadcrumb';
 import ListingHeader from '../components/ListingHeader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
+
 
 function Listing() {
     const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
@@ -52,12 +55,41 @@ function Listing() {
             <div className={styles.listingContainer}>
                 {listing ? (
                     <div className={styles.listingDetails}>
-                        <img src={listing.image} alt={listing.title} className={styles.listingImage} />
+   
+                        <div className={styles.listingLHside}>
+                            <div className={styles.imgs}>
+                                <img src={listing.image} alt={listing.title} className={styles.listingImage} />
+                                <img src='/images/watchlist-btn.png' alt='Watchlist' className={styles.watchlist} />
+                            </div>
+                            <h2>Details:</h2>
+                            <p>Condition: {listing.condition}</p>
+                            <p>{listing.description}</p>
+                        </div>
+
+                        
                         <div className={styles.listingRHside}>
                             <h1>{listing.title}</h1>
+                            <p className={styles.listDate}>
+                                Closes: <br /> 
+                                {listing.auction_end_date} <br />
+                            </p>
+                            <button className={styles.watchlistBtn}><FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`}/>Add to Watchlist</button>
+                            <p className={styles.watchlistCount}>
+                                5 others watchlisted
+                            </p>
+
+                            <div className={styles.priceContainer}>
+                                <p>Starting price</p>
+                                <h2 className={styles.price}>${listing.start_price}.00</h2>
+                                <button className={`${styles.bidBtn} ${styles.blueBtn}`}>Place bid</button>
+                                <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
+                                <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
+                                <p className={styles.reserveTxt}>No reserve<br/>
+                                No bids</p>
+                            </div>
                         </div>
-                        <p>{listing.description}</p>
-                        {/* Add other listing details you want to display */}
+
+                        
                     </div>
                 ) : (
                     <div>No listing data available</div>
