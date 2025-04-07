@@ -3,7 +3,7 @@ Recreate Trade Me with a more thoughtful user flow
 
 ### Prerequisites
 The project utilises the following: 
-
+* Github repo: https://github.com/nicolealeisha/L5-Mission05 
 * npm
   ```sh
   npm install
