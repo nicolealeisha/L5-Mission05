@@ -30,9 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
     .catch(err => {
         console.error("Error connecting to MongoDB:", err);
     });
-
-// Import model --  required here??
-const Product = require('./models/product');
+    
 
 // Import routes
 const productListingRoute = require('./routes/productListing');
