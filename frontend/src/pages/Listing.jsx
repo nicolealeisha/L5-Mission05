@@ -28,7 +28,7 @@ function Listing() {
                 }
 
                 const data = await response.json();
-                setListing(data);  // Set the listing data in state
+                setListing(data[0]);  // Set specific listing data in state
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
@@ -42,6 +42,8 @@ function Listing() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    console.log(listing); // Log the listing data to check if it's being fetched correctly
+
     return (
         <>
             <ListingHeader />
@@ -49,8 +51,11 @@ function Listing() {
             {/* Render listing details here */}
             <div className={styles.listingContainer}>
                 {listing ? (
-                    <div>
-                        <h1>{listing.title}</h1>
+                    <div className={styles.listingDetails}>
+                        <img src={listing.image} alt={listing.title} className={styles.listingImage} />
+                        <div className={styles.listingRHside}>
+                            <h1>{listing.title}</h1>
+                        </div>
                         <p>{listing.description}</p>
                         {/* Add other listing details you want to display */}
                     </div>
