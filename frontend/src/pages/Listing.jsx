@@ -5,6 +5,8 @@ import ListingBreadcrumb from '../components/ListingBreadcrumb';
 import ListingHeader from '../components/ListingHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import ListingQuestions from '../components/ListingQuestions';
 
 
 function Listing() {
@@ -22,7 +24,7 @@ function Listing() {
                 const response = await fetch(`http://localhost:3000/listing/${listingId}`, {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json',  // Ensure the Content-Type header is set
+                        'Content-Type': 'application/json', 
                     },
                 });
 
@@ -45,13 +47,11 @@ function Listing() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    console.log(listing); // Log the listing data to check if it's being fetched correctly
-
     return (
         <>
             <ListingHeader />
             <ListingBreadcrumb />
-            {/* Render listing details here */}
+
             <div className={styles.listingContainer}>
                 {listing ? (
                     <div className={styles.listingDetails}>
@@ -63,7 +63,40 @@ function Listing() {
                             </div>
                             <h2>Details:</h2>
                             <p>Condition: {listing.condition}</p>
+                            <h2>Full Description</h2>
                             <p>{listing.description}</p>
+                            <div className={styles.payment}>
+                                <h2>Payment Options</h2>
+                                <div className={styles.paymentOptions}>
+                                    <div className={styles.lhPaymentOptions}>
+                                        <img src='/images/payment-ping.png' alt='Payment Options' className={styles.paymentImage} />
+                                        <p>Pay instantly by card, Ping balance or saved bank account.</p>
+                                        <a href='/404' className={styles.link}>What's Ping?</a>
+                                    </div>
+                                    <div className={styles.rhPaymentOptions}>
+                                        <img src='/images/payment-afterpay.png' alt='Payment Options' className={styles.paymentImage} />
+                                        <p>Four fortnightly interest-free payments.</p>
+                                        <a href='/404' className={styles.link}>What's Afterpay?</a>
+                                    </div>
+                                </div>
+                                <div className={styles.otherPaymentOptions}>
+                                        <h3>Other Options</h3>
+                                        <p>Cash, NZ Bank Deposit</p>
+                                </div>  
+                            </div>
+                            <ListingQuestions />
+
+                            <div className={styles.sellerDetails}>
+                                <h2>About the seller</h2>
+                                <div className={styles.sellerAvatar}>
+                                    <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.sellerAvatarIcon}`} />
+                                </div>
+                                <p>Seller name {listing.seller_name}</p>
+                                <p>{listing.seller_rating} positive feedback (123)</p>
+                                <p>Location</p> 
+                                <p>Seller's other listings</p>
+                                <p>See all listings</p>
+                            </div>   
                         </div>
 
                         
