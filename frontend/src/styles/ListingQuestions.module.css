@@ -26,13 +26,13 @@ p{
 .question{
     margin: 0;
     background-color: #F7F5F4;
-    color: #B9B7C1;
+    color: #8A8685;
     border-radius: 8px;
     padding: 8px;
 }
 
 .questionBtn{
-    background-color: #528EE1;
+    background-color: #0076BC;
     color: #fff;
     padding: 8px;
     font-size: 16px;

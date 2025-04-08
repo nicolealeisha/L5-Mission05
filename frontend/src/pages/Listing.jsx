@@ -4,9 +4,13 @@ import { useEffect, useState } from 'react';
 import ListingBreadcrumb from '../components/ListingBreadcrumb';
 import ListingHeader from '../components/ListingHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import ListingPayment from '../components/ListingPayment';
 import ListingQuestions from '../components/ListingQuestions';
+import ListingRHside from '../components/ListingRHSide';
+
 
 
 function Listing() {
@@ -14,8 +18,6 @@ function Listing() {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    console.log(listingId); // Log the listingId to check if it's being passed correctly
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -54,76 +56,53 @@ function Listing() {
 
             <div className={styles.listingContainer}>
                 {listing ? (
-                    <div className={styles.listingDetails}>
+                    <>
+                    <div className={styles.topListingDetails}>
    
                         <div className={styles.listingLHside}>
                             <div className={styles.imgs}>
                                 <img src={listing.image} alt={listing.title} className={styles.listingImage} />
                                 <img src='/images/watchlist-btn.png' alt='Watchlist' className={styles.watchlist} />
                             </div>
-                            <h2>Details:</h2>
-                            <p>Condition: {listing.condition}</p>
+                        </div>
+
+                        <div className={styles.listingRHside}>
+                            <ListingRHside />
+                        </div>
+                    </div>
+                    <div className={styles.btmListingDetails}>
+                        
+                        <div className={styles.listingLHside}>
+                            <h2>Details</h2>
+                            <p className={styles.description}>Condition: {listing.condition}</p>
                             <h2>Full Description</h2>
-                            <p>{listing.description}</p>
-                            <div className={styles.payment}>
-                                <h2>Payment Options</h2>
-                                <div className={styles.paymentOptions}>
-                                    <div className={styles.lhPaymentOptions}>
-                                        <img src='/images/payment-ping.png' alt='Payment Options' className={styles.paymentImage} />
-                                        <p>Pay instantly by card, Ping balance or saved bank account.</p>
-                                        <a href='/404' className={styles.link}>What's Ping?</a>
-                                    </div>
-                                    <div className={styles.rhPaymentOptions}>
-                                        <img src='/images/payment-afterpay.png' alt='Payment Options' className={styles.paymentImage} />
-                                        <p>Four fortnightly interest-free payments.</p>
-                                        <a href='/404' className={styles.link}>What's Afterpay?</a>
-                                    </div>
-                                </div>
-                                <div className={styles.otherPaymentOptions}>
-                                        <h3>Other Options</h3>
-                                        <p>Cash, NZ Bank Deposit</p>
-                                </div>  
-                            </div>
+                            <p className={styles.description}>{listing.description}</p>
+                            
+                            <ListingPayment />
+
                             <ListingQuestions />
 
                             <div className={styles.sellerDetails}>
-                                <h2>About the seller</h2>
-                                <div className={styles.sellerAvatar}>
-                                    <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.sellerAvatarIcon}`} />
+                                <div className={styles.sellerDetailsCentre}>
+                                    <h2>About the seller</h2>
+                                    <div className={styles.sellerAvatar}>
+                                        <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.sellerAvatarIcon}`} />
+                                    </div>
+                                    <p><b>Seller name {listing.seller_name}</b></p>
+                                    <p>99% positive feedback (123)</p>
                                 </div>
-                                <p>Seller name {listing.seller_name}</p>
-                                <p>{listing.seller_rating} positive feedback (123)</p>
-                                <p>Location</p> 
-                                <p>Seller's other listings</p>
-                                <p>See all listings</p>
+                                <div className={styles.sellerDetailDivider}><p>Location</p><p className={styles.rhDetails}>Auckland</p></div>
+                                <div className={styles.sellerDetailDivider}><p>Member since</p><p className={styles.rhDetails}>Tue 05 Aug 2024</p></div>
+                                <div className={styles.sellerDetailDivider}><a href='/404' className={styles.sellerLink}>Seller's other listings</a><p className={styles.rhDetails}><FontAwesomeIcon icon={faAngleDown} className={`${styles.faIcon} ${styles.angleDown}`}/></p></div>
+                                <div className={styles.sellerDetailsCentre}>
+                                    <button className={`${styles.blueBtn} ${styles.sellerBtn}`}><FontAwesomeIcon icon={faHeartCirclePlus} className={styles.favouritesIcon}/>Add to Favourite Sellers</button>
+                                    <a href='/404'>Read our safe buying guide</a>
+                                </div>
                             </div>   
                         </div>
 
-                        
-                        <div className={styles.listingRHside}>
-                            <h1>{listing.title}</h1>
-                            <p className={styles.listDate}>
-                                Closes: <br /> 
-                                {listing.auction_end_date} <br />
-                            </p>
-                            <button className={styles.watchlistBtn}><FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`}/>Add to Watchlist</button>
-                            <p className={styles.watchlistCount}>
-                                5 others watchlisted
-                            </p>
-
-                            <div className={styles.priceContainer}>
-                                <p>Starting price</p>
-                                <h2 className={styles.price}>${listing.start_price}.00</h2>
-                                <button className={`${styles.bidBtn} ${styles.blueBtn}`}>Place bid</button>
-                                <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
-                                <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
-                                <p className={styles.reserveTxt}>No reserve<br/>
-                                No bids</p>
-                            </div>
-                        </div>
-
-                        
                     </div>
+                    </>
                 ) : (
                     <div>No listing data available</div>
                 )}
