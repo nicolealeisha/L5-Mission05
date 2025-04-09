@@ -12,7 +12,6 @@ import ListingQuestions from '../components/ListingQuestions';
 import ListingRHside from '../components/ListingRHSide';
 
 
-
 function Listing() {
     const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);

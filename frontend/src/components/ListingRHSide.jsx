@@ -6,9 +6,8 @@ import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 
 
 
-
 function Listing() {
-    const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
+    const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -50,15 +49,18 @@ function Listing() {
             {listing ? (
                 <>
                     <h1>{listing.title}</h1>
-                    <p className={styles.listDate}>
+
+                    <div className={styles.listingInfo}>
+                        <p className={styles.listDate}>
                         Closes: <br />
                         {listing.auction_end_date} <br />
-                    </p>
-                    <button className={styles.watchlistBtn}>
+                        </p>
+                        <button className={styles.watchlistBtn}>
                         <FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`} />
                         Add to Watchlist
-                    </button>
-                    <p className={styles.watchlistCount}>5 others watchlisted</p>
+                        </button>
+                        <p className={styles.watchlistCount}>5 others watchlisted</p>
+                    </div>
 
                     <div className={styles.priceContainer}>
                         <p>Starting price</p>

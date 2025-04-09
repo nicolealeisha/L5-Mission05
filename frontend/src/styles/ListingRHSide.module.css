@@ -27,6 +27,14 @@ h3{
 /* RIGHT HAND SIDE */
 
 .listingRHside{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start; /* Align right side to the top */
+}
+
+.listingInfo{
     width: 100%;
 }
 
@@ -101,3 +109,21 @@ h3{
     text-align: center;
 }
 
+
+/* Media Queries */
+
+@media (max-width: 320px) {
+
+    .listingRHside {
+        flex-direction: column; /* Stack elements vertically on mobile */
+    }
+
+    .listingInfo {
+        order: 2; /* Make sure the listing info comes below priceContainer */
+    }
+
+    .priceContainer {
+        order: 1; /* Price container comes first */
+    }
+
+}
