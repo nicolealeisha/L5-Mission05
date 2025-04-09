@@ -13,7 +13,7 @@ import ListingRHside from '../components/ListingRHSide';
 
 
 function Listing() {
-    const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
+    const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

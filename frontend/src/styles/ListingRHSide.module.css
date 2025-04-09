@@ -109,6 +109,107 @@ h3{
     text-align: center;
 }
 
+.buyerProtectionContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 12px;
+    border: 1px solid #0076BC;
+    border-radius: 4px;
+    padding: 8px 24px 12px 24px;
+}
+
+.buyerProtectionHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.buyerProtectionImg{
+    width: 14px;
+    height: auto;
+}
+
+.buyerProtectionHeader{
+    color: #0076BC;
+    font-weight: bold;
+    padding: 8px 4px 4px 4px;
+    width: 100%;
+    text-align: left;
+}
+
+.buyerProtectionText{
+    color:#8A8685;
+    font-weight: normal;
+}
+
+.buyerProtectionImg, 
+.buyerProtectionHeader,
+.buyerProtectionText {
+    display: inline; /* Make both spans inline elements to flow together */
+    font-size: 12px;
+}
+
+.buyerProtectionContainer > a {
+    font-size: 8px;
+    color: #0076BC;
+    text-align: left;
+    cursor: pointer;
+    padding: 4px 4px;
+}
+
+.sellerDetailsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    border: 1px solid #0076BC;
+    border-radius: 4px;
+    padding: 8px 0 12px 0;
+    width: 100%;
+}
+
+.sellerImg{
+    width: 20%;
+    padding: 12px 20px;
+}
+
+.sellerAvatar {
+    max-width: 100%;                 
+    aspect-ratio: 1 / 1;           /* Keeps it square */
+    border-radius: 50%;           /* Makes it a circle */
+    background-color: #ccc;       /* Grey background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.sellerInfo{
+    width: 80%;
+}
+
+.sellerName{
+    color: #0076BC;
+}
+
+.sellerRatingPercentage{
+    color: #000;
+    font-weight: bold;
+}
+
+.sellerRating, .sellerLocation{
+    color: #8A8685;
+}
+
+.sellerRatingPercentage, .sellerRating{
+    font-size: 12px;
+}
 
 /* Media Queries */
 

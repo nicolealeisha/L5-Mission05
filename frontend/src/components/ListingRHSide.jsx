@@ -3,16 +3,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
+import ListingDetails from './ListingRHDetails';
+import Listing from '../pages/Listing';
 
-
-
-function Listing() {
+function ListingRHSide() {
     const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    console.log(listingId); // Log the listingId to check if it's being passed correctly
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -74,6 +72,28 @@ function Listing() {
                             No bids
                         </p>
                     </div>
+
+                    <div className={styles.buyerProtectionContainer}>
+                        <span className={styles.buyerProtectionHeader}>
+                            <img src='/images/buyer-protection.png' alt='Buyer Protection' className={styles.buyerProtectionImg} />
+                            <span className={styles.buyerProtectionHeader}>Buyers Protection</span> 
+                            <span className={styles.buyerProtectionText}>covers you up to $2,500 on this item when you pay with Ping or Afterpay if your item doesn't show up or isn't as described.</span>
+                        </span>
+                        <a>Learn more about Buyer Protection</a>
+                    </div>
+
+                    <div className={styles.sellerDetailsContainer}>
+                        <div className={styles.sellerImg}>
+                            <img src={listing.seller_image} alt='Seller' className={styles.sellerAvatar} />
+                        </div>
+                        <div className={styles.sellerInfo}>
+                            <p className={styles.sellerName}>{listing.seller_name} name</p>
+                            <span className={styles.sellerRatingPercentage}>{listing.seller_rating} %</span> <span className={styles.sellerRating}>positive feedback</span>
+                            <p className={styles.sellerLocation}>Seller located in {listing.seller_location}</p>
+                        </div>
+                    </div>
+
+                    <ListingDetails />    
                 </>
             ) : (
                 <div>No listing data available</div>
@@ -83,4 +103,4 @@ function Listing() {
 }
 
 
-export default Listing;
+export default ListingRHSide;
