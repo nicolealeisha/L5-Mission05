@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import ListingDetails from './ListingRHDetails';
-import Listing from '../pages/Listing';
 
 function ListingRHSide() {
     const { listingId } = useParams(); // Extract dynamic params from the URL

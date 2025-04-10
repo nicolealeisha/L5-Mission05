@@ -1,4 +1,4 @@
-import styles from '../styles/ListingRHdetails.module.css';
+import styles from '../styles/ListingRHDetails.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
