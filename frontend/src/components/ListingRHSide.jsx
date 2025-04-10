@@ -10,6 +10,7 @@ function ListingRHSide() {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [timeRemaining, setTimeRemaining] = useState('');
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -31,15 +32,56 @@ function ListingRHSide() {
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
-                setLoading(false);  // Set loading to false when the request is complete
+                setLoading(false); // Set loading to false when the request is complete
             }
         };
 
         fetchListing();
     }, [listingId]);  // Fetch listing when listingId changes
 
+    // Run countdown after listing loads to calculate time remaining
+    useEffect(() => {
+        if (!listing) return;
+    
+        const interval = setInterval(() => {
+        const now = new Date();
+        const auctionEndDate = new Date(listing.auction_end_date);
+        const diff = auctionEndDate - now;
+    
+        if (diff <= 0) {
+            setTimeRemaining('Auction ended');
+            clearInterval(interval);
+            return;
+        }
+    
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+    
+        setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s remaining`);
+        }, 1000);
+    
+        return () => clearInterval(interval); // Cleanup
+    }, [listing]);
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
+
+    const formatDate = (isoDateString) => {
+        const date = new Date(isoDateString);
+      
+        return date.toLocaleString('en-NZ', {
+          weekday: 'short',      
+          day: 'numeric',       
+          month: 'short',         
+          hour: 'numeric',       
+          minute: '2-digit',     
+          hour12: true           
+        }).replace(',', '');
+      };
+
+    const formattedDate = formatDate(listing.auction_end_date);
 
     return (
         <div className={styles.listingRHside}>
@@ -49,8 +91,8 @@ function ListingRHSide() {
 
                     <div className={styles.listingInfo}>
                         <p className={styles.listDate}>
-                        Closes: <br />
-                        {listing.auction_end_date} <br />
+                        Closes: {timeRemaining} <br />
+                        {formattedDate} <br />
                         </p>
                         <button className={styles.watchlistBtn}>
                         <FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`} />

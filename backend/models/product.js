@@ -6,15 +6,20 @@ const productSchema = mongoose.Schema({
     description: {type: String},
     start_price: {type: Number},
     reserve_price: {type: Number},
+    buy_now_price: {type: Number},
+    current_bid: {type: Number},
     image: {type: String},
     category: {type: String},
     subcategory: {type: String},
     location: {type: String},
     condition: {type: String},
     auction_start_date: {type: Date},
-    auction_start_time: {type: String},
     auction_end_date: {type: Date},
-    auction_end_time: {type: String},
+    seller_name: {type: String},
+    seller_image: {type: String},
+    seller_rating: {type: Number},
+    seller_location: {type: String},
+    seller_member_since: {type: Date},
 });
 
 // define and export
