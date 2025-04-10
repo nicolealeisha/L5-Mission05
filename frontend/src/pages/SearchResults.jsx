@@ -51,8 +51,9 @@ function Results() {
                 {results ? (
                     <div>
                         <h1>{results.title}</h1>
+                        <p>{results.title}</p>
                         <p>{results.description}</p>
-                        <div>Results data is funky</div>
+                        <div>Results data is funky. {results.length} results.</div>
                     </div>
                 ) : (
                     <div>No results data available</div>
