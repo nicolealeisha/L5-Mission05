@@ -1,4 +1,4 @@
-// import styles from '../styles/Results.module.css';
+import styles from '../styles/Results.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 // import ResultsBreadcrumb from '../components/ResultsBreadcrumb';
@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 
 function Results() {
     const { kw } = useParams(); // Extract keywkord params from the URL
-    const [listing, setResults] = useState(null);
+    const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const keyword = kw;
-    console.log(kw, keyword); // Log the listingId to check if it's being passed correctly
+    console.log(kw, keyword); // Log the keyword to check if it's being passed correctly
 
-    // Fetch listing data from the backend using the listingId
+    // Fetch results data from the backend using the keyword
     useEffect(() => {
         const fetchResults = async () => {
             try {
@@ -28,7 +28,7 @@ function Results() {
                 }
 
                 const data = await response.json();
-                setResults(data);  // Set the listing data in state
+                setResults(data);  // Set the results data in state
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
@@ -37,7 +37,7 @@ function Results() {
         };
 
         fetchResults();
-    }, [keyword]);  // Fetch listing when listingId changes
+    }, [keyword]);  // Fetch results when keyword changes
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -46,16 +46,16 @@ function Results() {
         <>
             {/* <ResultsHeader /> */}
             {/* <ResultsBreadcrumb /> */}
-            {/* Render listing details here */}
-            <div className={styles.listingContainer}>
-                {listing ? (
+            {/* Render results details here */}
+            <div className={styles.resultsContainer}>
+                {results ? (
                     <div>
-                        <h1>{listing.title}</h1>
-                        <p>{listing.description}</p>
-                        {/* Add other listing details you want to display */}
+                        <h1>{results.title}</h1>
+                        <p>{results.description}</p>
+                        <div>Results data is funky</div>
                     </div>
                 ) : (
-                    <div>No listing data available</div>
+                    <div>No results data available</div>
                 )}
             </div>
         </>
