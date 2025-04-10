@@ -50,8 +50,8 @@ function Results() {
             <div className={styles.resultsContainer}>
                 {results ? (
                     <div>
-                        <h1>{results.title}</h1>
-                        <p>{results.title}</p>
+                        <h1>{results[0].title}</h1>
+                        <p>{results[0].title}</p>
                         <p>{results.description}</p>
                         <div>Results data is funky. {results.length} results.</div>
                     </div>

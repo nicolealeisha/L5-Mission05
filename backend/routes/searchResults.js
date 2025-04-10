@@ -10,7 +10,7 @@ app.get('/search/:kw', async (req, res) => {
     if (!keyword) {
         return res.status(400).send({ error: 'Missing Keyword?' });
     }
-
+    console.log('[search] ', keyword); // Log the keyword to check if it's being passed correctly
     try {
         // search mongo by keyword
         const results = await productSchema.find({
