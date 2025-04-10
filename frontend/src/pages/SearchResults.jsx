@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react';
 // import ResultsHeader from '../components/ResultsHeader';
 
 function Results() {
-    const [keyword, setKeyword] = useState(null);
+    const { kw } = useParams(); // Extract keywkord params from the URL
     const [listing, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    console.log(keyword); // Log the listingId to check if it's being passed correctly
+    const keyword = kw;
+    console.log(kw, keyword); // Log the listingId to check if it's being passed correctly
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -24,7 +24,7 @@ function Results() {
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Results not found for ${keyword} or API request failed`);
+                    throw new Error(`Results not found for '${keyword}' or API request failed`);
                 }
 
                 const data = await response.json();
