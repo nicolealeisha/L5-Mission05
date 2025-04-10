@@ -8,10 +8,10 @@ function ListingHeader () {
             <header className={styles.listingHeader}>
                 <nav className={styles.listingNavbar}>
                     <ul className={styles.leftNavList}>
-                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/browse">Browse Marketplace <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon}`} /></a></li>
-                        <li className={styles.navItem}><a href='/404'>Stores</a></li>
-                        <li className={styles.navItem}><a href='/404'>Detail</a></li>
-                        <li className={styles.navItem}><a href='/404'>Book a courier</a></li>
+                        <li className={`${styles.navItem}`}><a href="/browse">Browse Marketplace <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon}`} /></a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href='/404'>Stores</a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href='/404'>Detail</a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href='/404'>Book a courier</a></li>
                     </ul>
                     <ul className={styles.rightNavList}>
                         <li className={styles.navItem}><a href='/404'>List an item</a></li>

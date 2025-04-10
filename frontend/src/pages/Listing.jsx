@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import ListingBreadcrumb from '../components/ListingBreadcrumb';
 import ListingHeader from '../components/ListingHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
@@ -50,6 +49,17 @@ function Listing() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    const formatDate = (isoDateString) => {
+        const date = new Date(isoDateString);
+      
+        return date.toLocaleString('en-NZ', {
+          weekday: 'long',      
+          day: 'numeric',       
+          month: 'long', 
+          year: 'numeric',            
+        });
+      };
+
     return (
         <>
             <ListingHeader />
@@ -64,26 +74,36 @@ function Listing() {
                                 <img src='/images/watchlist-btn.png' alt='Watchlist' className={styles.watchlist} />
                             </div>
 
-                            <h2>Details</h2>
-                            <p className={styles.description}>Condition: {listing.condition}</p>
-                            <h2>Full Description</h2>
-                            <p className={styles.description}>{listing.description}</p>
+                            <div className={styles.listingRHsideMobile}>
+                                <ListingRHside />
+                            </div>
+                        
+                            <div className={styles.listingDetails}>
+                                <h2>Details</h2>
+                                <p className={styles.description}>Condition: {listing.condition}</p>
+                                <h2>Full Description</h2>
+                                <p className={styles.description}>{listing.description}</p>
+                            </div>
                             
-                            <ListingPayment />
+                            <div className={styles.listingPayment}>
+                                <ListingPayment />
+                            </div>
 
-                            <ListingQuestions />
+                            <div className={styles.listingQuestions}>
+                                <ListingQuestions />
+                            </div>
 
                             <div className={styles.sellerDetails}>
                                 <h2>About the seller</h2>
                                 <div className={styles.sellerDetailsCentre}>
-                                    <div className={styles.sellerAvatar}>
-                                        <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.sellerAvatarIcon}`} />
+                                    <div className={styles.sellerAvatarBox}>
+                                        <img src={listing.seller_image} alt='Seller' className={styles.sellerAvatar} />
                                     </div>
-                                    <p><b>Seller name {listing.seller_name}</b></p>
-                                    <p>99% positive feedback (123)</p>
+                                    <p><b>{listing.seller_name}</b></p>
+                                    <p>{listing.seller_rating}% positive feedback (123)</p>
                                 </div>
-                                <div className={styles.sellerDetailDivider}><p>Location</p><p className={styles.rhDetails}>Auckland</p></div>
-                                <div className={styles.sellerDetailDivider}><p>Member since</p><p className={styles.rhDetails}>Tue 05 Aug 2024</p></div>
+                                <div className={styles.sellerDetailDivider}><p>Location</p><p className={styles.rhDetails}>{listing.seller_location}</p></div>
+                                <div className={styles.sellerDetailDivider}><p>Member since</p><p className={styles.rhDetails}>{formatDate(listing.seller_member_since)}</p></div>
                                 <div className={styles.sellerDetailDivider}><a href='/404' className={styles.sellerLink}>Seller's other listings</a><p className={styles.rhDetails}><FontAwesomeIcon icon={faAngleDown} className={`${styles.faIcon} ${styles.angleDown}`}/></p></div>
                                 <div className={styles.sellerDetailsCentre}>
                                     <button className={`${styles.blueBtn} ${styles.sellerBtn}`}><FontAwesomeIcon icon={faHeartCirclePlus} className={styles.favouritesIcon}/>Add to Favourite Sellers</button>
@@ -105,7 +125,7 @@ function Listing() {
                             
                         </div>
 
-                        <div className={styles.listingRHside}>
+                        <div className={styles.listingRHsideDesktop}>
                             <ListingRHside />
                         </div>
 

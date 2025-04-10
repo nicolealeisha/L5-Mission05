@@ -42,6 +42,14 @@ function ListingDetails() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
+    function getFirstSentence(description) {
+        // Split the description by periods and take the first part
+        const sentences = description.split('.');
+        
+        // Return the first sentence, removing any leading/trailing whitespace
+        return sentences[0].trim() + (sentences.length > 1 ? '.' : '');  // Adds the period back if it's the first sentence
+    }
+
     return (
         <div className={styles.listingRHDetails}>
             {listing ? (
@@ -54,7 +62,7 @@ function ListingDetails() {
                     </button>    
                     {expandListing && 
                     <div className={styles.listingDetails}>
-                        <p>{listing.description}</p>
+                        <p>{getFirstSentence(listing.description)}</p>
                     </div> }
 
                     <button className={`${styles.listingDetailsBtn}`} >
