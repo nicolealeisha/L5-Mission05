@@ -1,0 +1,45 @@
+p{
+    font-size: 12px;
+}
+
+.questionBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.avatar{
+    width: 5%;
+    padding: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.questionDetails{
+    margin-top: 0;
+    width: 95%;
+}
+
+.question{
+    margin: 4px 0;
+    background-color: #F7F5F4;
+    color: #8A8685;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.questionBtn{
+    background-color: #0076BC;
+    color: #fff;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+    width: 30%;
+}

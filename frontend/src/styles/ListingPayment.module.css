@@ -1,0 +1,37 @@
+.payment{
+    font-size: 12px;
+    color: #8A8685;
+}
+
+h3 {
+    color: #8A8685;
+}
+
+.paymentOptions{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+
+}
+
+.link {
+    color: #0076BC;
+}
+
+.lhPaymentOptions{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.rhPaymentOptions{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.paymentImage{
+    width: 40%;
+}

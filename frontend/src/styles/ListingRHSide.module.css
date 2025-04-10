@@ -1,0 +1,230 @@
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+h1{
+    color: #44413D;
+    font-size: 20px;
+    font-weight: extrabold;
+}
+
+h2{
+    color: #44413D;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h3{
+    color: #44413D;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* RIGHT HAND SIDE */
+
+.listingRHside{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: flex-start; /* Align right side to the top */
+}
+
+.listingInfo{
+    width: 100%;
+}
+
+.watchlistCount{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: #8A8685;
+}
+
+.priceContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.priceContainer > h2{
+    margin-top: 0;
+}
+
+.listDate{
+    color: #8A8685;
+}
+
+.watchlistBtn{
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    background-color: #FCC31F;
+    color: #933C00;
+}
+
+.watchlistIcon{
+    margin-right: 4px;
+    transform: rotate(180deg);
+}
+
+.priceContainer > button{
+    width: 90%;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    margin: 4px;
+}
+
+.blueBtn{
+    background-color: #0076BC;
+    color: #fff
+}
+
+.greyBtn{
+    background-color: #F7F5F4;
+    color: #0076BC;
+}
+
+.reserveTxt{
+    color: #8A8685;
+    font-size: 12px;
+    text-align: center;
+}
+
+.buyerProtectionContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 12px;
+    border: 1px solid #0076BC;
+    border-radius: 4px;
+    padding: 8px 24px 12px 24px;
+}
+
+.buyerProtectionHeader{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.buyerProtectionImg{
+    width: 14px;
+    height: auto;
+}
+
+.buyerProtectionHeader{
+    color: #0076BC;
+    font-weight: bold;
+    padding: 8px 4px 4px 4px;
+    width: 100%;
+    text-align: left;
+}
+
+.buyerProtectionText{
+    color:#8A8685;
+    font-weight: normal;
+}
+
+.buyerProtectionImg, 
+.buyerProtectionHeader,
+.buyerProtectionText {
+    display: inline; /* Make both spans inline elements to flow together */
+    font-size: 12px;
+}
+
+.buyerProtectionContainer > a {
+    font-size: 8px;
+    color: #0076BC;
+    text-align: left;
+    cursor: pointer;
+    padding: 4px 4px;
+}
+
+.sellerDetailsContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    border: 1px solid #0076BC;
+    border-radius: 4px;
+    padding: 8px 0 12px 0;
+    width: 100%;
+}
+
+.sellerImg{
+    width: 20%;
+    padding: 12px 20px;
+}
+
+.sellerAvatar {
+    max-width: 100%;                 
+    aspect-ratio: 1 / 1;           /* Keeps it square */
+    border-radius: 50%;           /* Makes it a circle */
+    background-color: #ccc;       /* Grey background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.sellerInfo{
+    width: 80%;
+}
+
+.sellerName{
+    color: #0076BC;
+}
+
+.sellerRatingPercentage{
+    color: #000;
+    font-weight: bold;
+}
+
+.sellerRating, .sellerLocation{
+    color: #8A8685;
+}
+
+.sellerRatingPercentage, .sellerRating{
+    font-size: 12px;
+}
+
+/* Media Queries */
+
+@media (max-width: 320px) {
+
+    .listingRHside {
+        flex-direction: column; /* Stack elements vertically on mobile */
+    }
+
+    .listingInfo {
+        order: 2; /* Make sure the listing info comes below priceContainer */
+    }
+
+    .priceContainer {
+        order: 1; /* Price container comes first */
+    }
+
+}

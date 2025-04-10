@@ -4,17 +4,22 @@ import { useEffect, useState } from 'react';
 import ListingBreadcrumb from '../components/ListingBreadcrumb';
 import ListingHeader from '../components/ListingHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
+import ListingPayment from '../components/ListingPayment';
+import ListingQuestions from '../components/ListingQuestions';
+import ListingRHside from '../components/ListingRHSide';
 
 
 function Listing() {
-    const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
+    const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    console.log(listingId); // Log the listingId to check if it's being passed correctly
-
+    
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
         const fetchListing = async () => {
@@ -22,7 +27,7 @@ function Listing() {
                 const response = await fetch(`http://localhost:3000/listing/${listingId}`, {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json',  // Ensure the Content-Type header is set
+                        'Content-Type': 'application/json', 
                     },
                 });
 
@@ -45,52 +50,67 @@ function Listing() {
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
-    console.log(listing); // Log the listing data to check if it's being fetched correctly
-
     return (
         <>
             <ListingHeader />
             <ListingBreadcrumb />
-            {/* Render listing details here */}
+
             <div className={styles.listingContainer}>
                 {listing ? (
-                    <div className={styles.listingDetails}>
-   
+                    <>
                         <div className={styles.listingLHside}>
                             <div className={styles.imgs}>
                                 <img src={listing.image} alt={listing.title} className={styles.listingImage} />
                                 <img src='/images/watchlist-btn.png' alt='Watchlist' className={styles.watchlist} />
                             </div>
-                            <h2>Details:</h2>
-                            <p>Condition: {listing.condition}</p>
-                            <p>{listing.description}</p>
-                        </div>
 
-                        
-                        <div className={styles.listingRHside}>
-                            <h1>{listing.title}</h1>
-                            <p className={styles.listDate}>
-                                Closes: <br /> 
-                                {listing.auction_end_date} <br />
-                            </p>
-                            <button className={styles.watchlistBtn}><FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`}/>Add to Watchlist</button>
-                            <p className={styles.watchlistCount}>
-                                5 others watchlisted
-                            </p>
+                            <h2>Details</h2>
+                            <p className={styles.description}>Condition: {listing.condition}</p>
+                            <h2>Full Description</h2>
+                            <p className={styles.description}>{listing.description}</p>
+                            
+                            <ListingPayment />
 
-                            <div className={styles.priceContainer}>
-                                <p>Starting price</p>
-                                <h2 className={styles.price}>${listing.start_price}.00</h2>
-                                <button className={`${styles.bidBtn} ${styles.blueBtn}`}>Place bid</button>
-                                <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
-                                <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
-                                <p className={styles.reserveTxt}>No reserve<br/>
-                                No bids</p>
+                            <ListingQuestions />
+
+                            <div className={styles.sellerDetails}>
+                                <h2>About the seller</h2>
+                                <div className={styles.sellerDetailsCentre}>
+                                    <div className={styles.sellerAvatar}>
+                                        <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.sellerAvatarIcon}`} />
+                                    </div>
+                                    <p><b>Seller name {listing.seller_name}</b></p>
+                                    <p>99% positive feedback (123)</p>
+                                </div>
+                                <div className={styles.sellerDetailDivider}><p>Location</p><p className={styles.rhDetails}>Auckland</p></div>
+                                <div className={styles.sellerDetailDivider}><p>Member since</p><p className={styles.rhDetails}>Tue 05 Aug 2024</p></div>
+                                <div className={styles.sellerDetailDivider}><a href='/404' className={styles.sellerLink}>Seller's other listings</a><p className={styles.rhDetails}><FontAwesomeIcon icon={faAngleDown} className={`${styles.faIcon} ${styles.angleDown}`}/></p></div>
+                                <div className={styles.sellerDetailsCentre}>
+                                    <button className={`${styles.blueBtn} ${styles.sellerBtn}`}><FontAwesomeIcon icon={faHeartCirclePlus} className={styles.favouritesIcon}/>Add to Favourite Sellers</button>
+                                    <a href='/404'>Read our safe buying guide</a>
+                                </div>
+                            </div> 
+
+                            <div className={styles.shareListing}>
+                                <a className={styles.share} ><FontAwesomeIcon icon={faShareNodes} className={styles.shareIcon}/> Share this listing</a>
+                                <span className={styles.shareDot}>•</span>
+                                <span className={styles.shareInfo}>Listing #{listing._id}</span>
+                                <span className={styles.shareDot}>•</span>
+                                <span className={styles.shareInfo}>Page views: 40</span>
+                            </div>  
+                            <div className={styles.communityWatchInfo}>
+                                <span className={styles.communityWatch}><FontAwesomeIcon icon={faStar} className={styles.commWatchIcon} /> Community Watch:</span>
+                                <a className={styles.commWatchReport}>Report this listing</a>
                             </div>
+                            
                         </div>
 
-                        
-                    </div>
+                        <div className={styles.listingRHside}>
+                            <ListingRHside />
+                        </div>
+
+
+                    </>
                 ) : (
                     <div>No listing data available</div>
                 )}

@@ -11,10 +11,10 @@ a:hover{
 }
 
 
-.listingHeader{
+.listingHeader {
     display: flex;
     width: 100%;
-    background-color: #C64A3D;
+    
 }
 
 .listingNavbar{
@@ -23,6 +23,7 @@ a:hover{
     align-items: center;
     padding: 0 20px;
     width: 100%;
+    background-color: #C64A3D;
 }
 
 .listingNavbar a{
