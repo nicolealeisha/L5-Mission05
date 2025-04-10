@@ -1,22 +1,22 @@
-import styles from '../styles/Listing.module.css';
+// import styles from '../styles/Results.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ListingBreadcrumb from '../components/ListingBreadcrumb';
-import ListingHeader from '../components/ListingHeader';
+// import ResultsBreadcrumb from '../components/ResultsBreadcrumb';
+// import ResultsHeader from '../components/ResultsHeader';
 
-function Listing() {
-    const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
-    const [listing, setListing] = useState(null);
+function Results() {
+    const [keyword, setKeyword] = useState(null);
+    const [listing, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    console.log(listingId); // Log the listingId to check if it's being passed correctly
+    console.log(keyword); // Log the listingId to check if it's being passed correctly
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
-        const fetchListing = async () => {
+        const fetchResults = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/listing/${listingId}`, {
+                const response = await fetch(`http://localhost:3000/search/${keyword}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',  // Ensure the Content-Type header is set
@@ -24,11 +24,11 @@ function Listing() {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Listing not found or API request failed');
+                    throw new Error(`Results not found for ${keyword} or API request failed`);
                 }
 
                 const data = await response.json();
-                setListing(data);  // Set the listing data in state
+                setResults(data);  // Set the listing data in state
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
@@ -36,16 +36,16 @@ function Listing() {
             }
         };
 
-        fetchListing();
-    }, [listingId]);  // Fetch listing when listingId changes
+        fetchResults();
+    }, [keyword]);  // Fetch listing when listingId changes
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
         <>
-            <ListingHeader />
-            <ListingBreadcrumb />
+            {/* <ResultsHeader /> */}
+            {/* <ResultsBreadcrumb /> */}
             {/* Render listing details here */}
             <div className={styles.listingContainer}>
                 {listing ? (
@@ -62,4 +62,4 @@ function Listing() {
     );
 }
 
-export default Listing;
+export default Results;
