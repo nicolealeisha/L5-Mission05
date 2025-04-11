@@ -41,8 +41,8 @@ h3{
     flex-direction: column;
     justify-content: center;
     margin-left: 20px;
-    margin-right: 20px;
-    width: calc(60% - 40px);
+    margin-right: 28px;
+    width: calc(60% - 48px);
     position: relative; /* Make sure the watchlist button is positioned relative to this */
 }
 
@@ -67,11 +67,16 @@ h3{
 
 .description{
     color: #8A8685;
-    margin-top: 0;
 }
 
 .sellerDetails{
     margin-top: 12px;
+    color: #8A8685;
+    font-size: 14px;
+}
+
+.sellerDetails > h2{
+    color: #8A8685;
 }
 
 .sellerDetailsCentre{
@@ -81,6 +86,21 @@ h3{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.sellerAvatarBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sellerAvatar {
+    max-width: 75px;                 
+    aspect-ratio: 1 / 1;           /* Keeps it square */
+    border-radius: 50%;           /* Makes it a circle */
+    background-color: #ccc;       /* Grey background if no image */
+    overflow: hidden;
 }
 
 .sellerDetailDivider{
@@ -102,7 +122,7 @@ h3{
 
 .sellerLink{
     color: #0076BC;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     margin: 1em 0;
 }
@@ -178,24 +198,81 @@ h3{
 
 /* RIGHT HAND SIDE */
 
-.listingRHside{
+.listingRHsideDesktop{
     width: 40%;
     padding-right: 20px;
 }
 
+.listingRHsideMobile{
+    display: none; /* Hide on desktop */
+}
+
 @media (max-width: 320px) {
-    .topListingDetails{
+    /* Mobile styles */
+    .listingContainer {
+        display: flex;
         flex-direction: column; /* Stack elements vertically on mobile */
         align-items: center; /* Center items horizontally */
     }
-    
-    .listingLHside{
+
+    .listingLHside {
         width: 100%; /* Full width on mobile */
+        margin: 0 0 20px 0; /* Add space between LH and RH side */
     }
 
-    .listingRHside {
+    .listingRHsideMobile{
+        display: flex; /* Show on mobile */
+        flex-direction: column;
+        justify-content: center;
         width: 100%; /* Full width on mobile */
-        }
+        padding: 0 20px; /* Add padding on mobile */
+    }
 
+    .listingRHsideDesktop {
+        display: none; /* Hide on mobile */
+    }
 
+    .listingPayment, .listingQuestions {
+        width: 100%;
+        display: flex;
+        padding: 0 20px;
+    }
+
+    .listingDetails{
+        padding: 0 20px;
+    }
+
+    .sellerDetails {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .sellerAvatar{
+        max-width: 40px;
+        margin-top: 12px;
+    }
+
+    .shareListing {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .shareDot{
+        display: none;
+    }
+
+    .share, .shareInfo{
+        margin: 4px 0;
+    }
+
+    .communityWatchInfo {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+    }
 }

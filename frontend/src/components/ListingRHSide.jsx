@@ -129,12 +129,13 @@ function ListingRHSide() {
                         </div>
                         <div className={styles.sellerInfo}>
                             <p className={styles.sellerName}>{listing.seller_name} name</p>
-                            <span className={styles.sellerRatingPercentage}>{listing.seller_rating} %</span> <span className={styles.sellerRating}>positive feedback</span>
+                            <span className={styles.sellerRatingPercentage}>{listing.seller_rating}%</span> <span className={styles.sellerRating}>positive feedback</span>
                             <p className={styles.sellerLocation}>Seller located in {listing.seller_location}</p>
                         </div>
                     </div>
-
-                    <ListingDetails />    
+                    <div className={styles.listingRHDetails}>
+                        <ListingDetails />    
+                    </div>
                 </>
             ) : (
                 <div>No listing data available</div>

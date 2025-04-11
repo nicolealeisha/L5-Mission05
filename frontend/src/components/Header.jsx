@@ -6,6 +6,7 @@ import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { useState } from 'react';
 import { Form } from "react-router-dom";
 
 
@@ -17,7 +18,15 @@ function Header() {
         const searchTerm = formData.get('kw');
         window.location.href = `/search/${searchTerm}`;
     }
-    return (
+
+    // State to manage the search bar visibility in mobile view
+    const [searchActive, setSearchActive] = useState(false);
+
+    const handleSearchClick = () => {
+        setSearchActive(prev => !prev);
+    };
+
+    return ( 
         <>
             <header className={styles.topHeader}>
                 <nav className={styles.topNavbar}>
@@ -46,12 +55,16 @@ function Header() {
                                 <input name="kw" type='text' placeholder='Search'></input>
                             </form>
                         </li>
+                        <li className={`${styles.navItem} ${styles.navExtendedSearch}`}><FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearchClick} className={`${styles.faIcon} ${styles.navSearchBtn}`} /><input className={`${styles.navSearch} ${searchActive ? styles.searchActive : styles.searchHidden}`} type='text' placeholder='Search'></input></li>
                     </ul>
                     <ul className={styles.secRightNavList}>
                         <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon} /> Watchlist</a></li>
+                        <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon} />Start a listing</a></li>
                         <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`} />My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`} /></a></li>
+                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon}/>Start a listing</a></li>
+                        <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`}/>My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`}/></a></li>
                     </ul>
                 </nav>
             </header>

@@ -176,7 +176,7 @@ h3{
 }
 
 .sellerImg{
-    width: 20%;
+    width: 30%;
     padding: 12px 20px;
 }
 
@@ -189,13 +189,10 @@ h3{
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    font-size: 14px;
-    color: white;
-    text-transform: uppercase;
 }
 
 .sellerInfo{
-    width: 80%;
+    width: 70%;
 }
 
 .sellerName{
@@ -215,6 +212,10 @@ h3{
     font-size: 12px;
 }
 
+.listingRHDetails{
+    width: 100%;
+}
+
 /* Media Queries */
 
 @media (max-width: 320px) {
@@ -223,12 +224,41 @@ h3{
         flex-direction: column; /* Stack elements vertically on mobile */
     }
 
+    .listingTitle{
+        order: 1;
+    }
+
     .listingInfo {
-        order: 2; /* Make sure the listing info comes below priceContainer */
+        order: 3; 
     }
 
     .priceContainer {
-        order: 1; /* Price container comes first */
+        order: 2;
+        margin-top: 0;
+    }
+
+    .buyerProtectionContainer{
+        display: none; /* Hide buyer protection on mobile */
+    }
+
+    .sellerDetailsContainer{
+        order: 4;
+    }
+
+    .sellerInfo > p {
+        margin: 0;
+    }
+
+    .sellerInfo{
+        margin: 8px 0;
+    }
+
+    .sellerName{
+        margin-top: 12px;
+    }
+
+    .listingRHDetails{
+        order: 5;
     }
 
 }

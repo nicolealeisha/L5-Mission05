@@ -35,3 +35,17 @@ h3 {
 .paymentImage{
     width: 40%;
 }
+
+@media (max-width: 320px) {
+    .paymentOptions{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .lhPaymentOptions, .rhPaymentOptions{
+        margin-top: 20px;
+        width: 70%;
+    }
+
+}

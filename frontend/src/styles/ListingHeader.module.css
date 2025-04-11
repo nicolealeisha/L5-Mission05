@@ -43,3 +43,15 @@ a:hover{
     display: flex;
     gap: 20px; 
 }
+
+
+@media (max-width: 320px) {
+   .mobHide{
+    display: none;
+   }
+
+   .listingNavbar{
+    font-size: 14px;
+   }
+
+}
