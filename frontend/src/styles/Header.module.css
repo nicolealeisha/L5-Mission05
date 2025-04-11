@@ -23,6 +23,7 @@ a:hover{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    background-color:#F7F5F4;
 }
 
 .topNavbar a{

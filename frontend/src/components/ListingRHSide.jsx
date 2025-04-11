@@ -133,8 +133,9 @@ function ListingRHSide() {
                             <p className={styles.sellerLocation}>Seller located in {listing.seller_location}</p>
                         </div>
                     </div>
-
-                    <ListingDetails />    
+                    <div className={styles.listingRHDetails}>
+                        <ListingDetails />    
+                    </div>
                 </>
             ) : (
                 <div>No listing data available</div>

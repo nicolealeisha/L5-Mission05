@@ -71,6 +71,12 @@ h3{
 
 .sellerDetails{
     margin-top: 12px;
+    color: #8A8685;
+    font-size: 14px;
+}
+
+.sellerDetails > h2{
+    color: #8A8685;
 }
 
 .sellerDetailsCentre{
@@ -116,7 +122,7 @@ h3{
 
 .sellerLink{
     color: #0076BC;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     margin: 1em 0;
 }
@@ -226,27 +232,41 @@ h3{
         display: none; /* Hide on mobile */
     }
 
-    .listingPayment {
+    .listingPayment, .listingQuestions {
         width: 100%;
         display: flex;
+        padding: 0 20px;
     }
 
-    .listingQuestions {
-        width: 100%;
-        display: flex;
+    .listingDetails{
+        padding: 0 20px;
     }
 
     .sellerDetails {
         display: flex;
         flex-direction: column;
         width: 100%;
+        padding: 0 20px;
+    }
+
+    .sellerAvatar{
+        max-width: 40px;
+        margin-top: 12px;
     }
 
     .shareListing {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         width: 100%;
+    }
+
+    .shareDot{
+        display: none;
+    }
+
+    .share, .shareInfo{
+        margin: 4px 0;
     }
 
     .communityWatchInfo {
