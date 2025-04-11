@@ -121,6 +121,10 @@ a:hover{
         align-items: center;
     }
 
+    .faBtn{
+        cursor: pointer;
+    }
+
     .mobHide{
         display: none;
     }

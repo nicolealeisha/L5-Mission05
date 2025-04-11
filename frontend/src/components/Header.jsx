@@ -50,19 +50,17 @@ function Header() {
                     <ul className={styles.secLeftNavList}>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
                         <li className={styles.navItem}>
-                            <form className={styles.navSearch} action="/search" name="search" method="get" onSubmit={submitForm} onClick={submitForm} >
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.faIcon} onClick={submitForm} />
-                                <input name="kw" type='text' placeholder='Search'></input>
+                            <form className={`${styles.navItem} ${styles.navExtendedSearch}`} action="/search" name="search" method="get" onSubmit={submitForm} onClick={submitForm} >
+                                <FontAwesomeIcon icon={faMagnifyingGlass} className={`${styles.faIcon} ${styles.faBtn}`} onClick={(()=> submitForm, handleSearchClick)} />
+                                    {/* hey tom i've put both of our functions into the onClick for the search button. i couldn't get yours to work though...  */}
+                                    {/* mine is for mobile view functionality, to fix up the search bar displaying properly on mobile */}
+                                <input name="kw" type='text' placeholder='Search' className={`${styles.navSearch} ${searchActive ? styles.searchActive : styles.searchHidden}`} ></input>
                             </form>
                         </li>
-                        <li className={`${styles.navItem} ${styles.navExtendedSearch}`}><FontAwesomeIcon icon={faMagnifyingGlass} onClick={handleSearchClick} className={`${styles.faIcon} ${styles.navSearchBtn}`} /><input className={`${styles.navSearch} ${searchActive ? styles.searchActive : styles.searchHidden}`} type='text' placeholder='Search'></input></li>
                     </ul>
                     <ul className={styles.secRightNavList}>
-                        <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon} /> Watchlist</a></li>
                         <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>
-                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon} />Start a listing</a></li>
-                        <li className={styles.navItem}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`} />My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`} /></a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon}/>Start a listing</a></li>
                         <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`}/>My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`}/></a></li>
                     </ul>
