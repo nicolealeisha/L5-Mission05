@@ -1,0 +1,6 @@
+.resultsContainer{
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: center;
+    margin-top: 20px;
+}

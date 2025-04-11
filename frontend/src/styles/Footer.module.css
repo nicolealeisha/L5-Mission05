@@ -2,8 +2,8 @@ li, a {
     list-style: none;
 }
 a.logo {
-    visibility: hidden;
-    display: none;
+    /* visibility: hidden; */
+    /* display: none; */
     content: url('/images/frend/trademe-logo-no-tagline.png');
     /* /images/frend/trademe-logo-no-tagline.png */
 }

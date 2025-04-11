@@ -1,22 +1,22 @@
-import styles from '../styles/Listing.module.css';
+import styles from '../styles/Results.module.css';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import ListingBreadcrumb from '../components/ListingBreadcrumb';
-import ListingHeader from '../components/ListingHeader';
+// import ResultsBreadcrumb from '../components/ResultsBreadcrumb';
+// import ResultsHeader from '../components/ResultsHeader';
 
-function Listing() {
-    const { category, subcategory, listingId } = useParams(); // Extract dynamic params from the URL
-    const [listing, setListing] = useState(null);
+function Results() {
+    const { kw } = useParams(); // Extract keywkord params from the URL
+    const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const keyword = kw;
+    console.log(kw, keyword); // Log the keyword to check if it's being passed correctly
 
-    console.log(listingId); // Log the listingId to check if it's being passed correctly
-
-    // Fetch listing data from the backend using the listingId
+    // Fetch results data from the backend using the keyword
     useEffect(() => {
-        const fetchListing = async () => {
+        const fetchResults = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/listing/${listingId}`, {
+                const response = await fetch(`http://localhost:3000/search/${keyword}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',  // Ensure the Content-Type header is set
@@ -24,11 +24,11 @@ function Listing() {
                 });
 
                 if (!response.ok) {
-                    throw new Error('Listing not found or API request failed');
+                    throw new Error(`Results not found for '${keyword}' or API request failed`);
                 }
 
                 const data = await response.json();
-                setListing(data);  // Set the listing data in state
+                setResults(data);  // Set the results data in state
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
@@ -36,30 +36,31 @@ function Listing() {
             }
         };
 
-        fetchListing();
-    }, [listingId]);  // Fetch listing when listingId changes
+        fetchResults();
+    }, [keyword]);  // Fetch results when keyword changes
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
     return (
         <>
-            <ListingHeader />
-            <ListingBreadcrumb />
-            {/* Render listing details here */}
-            <div className={styles.listingContainer}>
-                {listing ? (
+            {/* <ResultsHeader /> */}
+            {/* <ResultsBreadcrumb /> */}
+            {/* Render results details here */}
+            <div className={styles.resultsContainer}>
+                {results ? (
                     <div>
-                        <h1>{listing.title}</h1>
-                        <p>{listing.description}</p>
-                        {/* Add other listing details you want to display */}
+                        <h1>{results[0].title}</h1>
+                        <p>{results[0].title}</p>
+                        <p>{results.description}</p>
+                        <div>Results data is funky. {results.length} results.</div>
                     </div>
                 ) : (
-                    <div>No listing data available</div>
+                    <div>No results data available</div>
                 )}
             </div>
         </>
     );
 }
 
-export default Listing;
+export default Results;

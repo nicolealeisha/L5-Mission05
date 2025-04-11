@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Listing from './pages/Listing';
+import SearchResults from './pages/SearchResults';
 
 function App() {
 
@@ -19,6 +20,10 @@ function App() {
           <Route
             path="/marketplace/:category/:subcategory/listing/:listingId"
             element={<Listing />}
+          />
+          <Route
+            path="/search/:kw"
+            element={<SearchResults />}
           />
         </Routes>
         <Footer />
