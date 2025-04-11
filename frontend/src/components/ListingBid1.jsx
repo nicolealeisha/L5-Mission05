@@ -4,13 +4,11 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-function ListingBid1() {
+function ListingBid1(props) {
     const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [timeRemaining, setTimeRemaining] = useState('');
-    const [handleClose, setHandleClose] = useState(false); // State to manage the close button
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -39,44 +37,18 @@ function ListingBid1() {
         fetchListing();
     }, [listingId]);  // Fetch listing when listingId changes
 
-   // Run countdown after listing loads to calculate time remaining
-   useEffect(() => {
-    if (!listing) return;
-
-    const interval = setInterval(() => {
-    const now = new Date();
-    const auctionEndDate = new Date(listing.auction_end_date);
-    const diff = auctionEndDate - now;
-
-    if (diff <= 0) {
-        setTimeRemaining('Auction ended');
-        clearInterval(interval);
-        return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
-    }, 1000);
-
-    return () => clearInterval(interval); // Cleanup
-}, [listing]);
-
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
 
     const closeBox = () => {
-        setHandleClose(!handleClose); // Toggle the handleClose state
+        props.setBidOverlay(false); // Toggle the handleClose state
     }
 
     return (
-        <div className={styles.listingBidOverlay}>
-            {listing && !handleClose ? (
+        <div className={`${props.bidOverlay ? styles.inActive : styles.listingBidOverlay}`}>
+            {listing ? (
                 <form className={styles.listingBidForm}>
                     <div className={styles.bidHeader}>
                         <h2>Place a bid</h2>
@@ -85,7 +57,7 @@ function ListingBid1() {
                     <div className={styles.auctionDetails}>
                         <img src={listing.image} alt={listing.title} className={styles.listingImage} />
                         <div className={styles.auctionInfo}>
-                            <p>{listing.location} | Closes {timeRemaining}</p> 
+                            <p>{listing.location} | Closes {props.timeRemaining}</p> 
                             <h3>{listing.title}</h3>
                             <p>Current Price: ${listing.current_bid}.00</p>
                             <p>Time Remaining: {listing.time_remaining}</p>

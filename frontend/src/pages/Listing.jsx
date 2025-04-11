@@ -66,7 +66,6 @@ function Listing() {
             <ListingHeader />
             <ListingBreadcrumb />
 
-            <ListingBid1 />
 
             <div className={styles.listingContainer}>
                 {listing ? (

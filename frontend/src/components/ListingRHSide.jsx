@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import ListingDetails from './ListingRHDetails';
+import ListingBid1 from './ListingBid1';
 
 function ListingRHSide() {
     const { listingId } = useParams(); // Extract dynamic params from the URL
@@ -11,6 +12,7 @@ function ListingRHSide() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [timeRemaining, setTimeRemaining] = useState('');
+    const [bidOverlay, setBidOverlay] = useState(false); // State to manage the bid input value
 
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -84,6 +86,9 @@ function ListingRHSide() {
     const formattedDate = formatDate(listing.auction_end_date);
 
     return (
+        <>
+        {bidOverlay && <ListingBid1 setBidOverlay={setBidOverlay} timeRemaining={timeRemaining} listing={listing}/> }
+
         <div className={styles.listingRHside}>
             {listing ? (
                 <>
@@ -104,7 +109,7 @@ function ListingRHSide() {
                     <div className={styles.priceContainer}>
                         <p>Starting price</p>
                         <h2 className={styles.price}>${listing.start_price}.00</h2>
-                        <button className={`${styles.bidBtn} ${styles.blueBtn}`}>Place bid</button>
+                        <button className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={(()=> setBidOverlay(true))}>Place bid</button>
                         <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
                         <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
                         <p className={styles.reserveTxt}>
@@ -141,7 +146,8 @@ function ListingRHSide() {
                 <div>No listing data available</div>
             )}
         </div>
-    );
+    </>
+    ); 
 }
 
 
