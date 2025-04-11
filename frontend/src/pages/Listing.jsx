@@ -11,6 +11,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import ListingPayment from '../components/ListingPayment';
 import ListingQuestions from '../components/ListingQuestions';
 import ListingRHside from '../components/ListingRHSide';
+import ListingBid1 from '../components/ListingBid1';
 
 
 function Listing() {
@@ -64,6 +65,8 @@ function Listing() {
         <>
             <ListingHeader />
             <ListingBreadcrumb />
+
+            <ListingBid1 />
 
             <div className={styles.listingContainer}>
                 {listing ? (
