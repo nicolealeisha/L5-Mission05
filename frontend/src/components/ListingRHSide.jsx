@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBinoculars } from '@fortawesome/free-solid-svg-icons';
 import ListingDetails from './ListingRHDetails';
-import ListingBid1 from './ListingBid1';
+import ListingBid from './ListingBid';
 
 function ListingRHSide() {
     const { listingId } = useParams(); // Extract dynamic params from the URL
@@ -61,7 +61,7 @@ function ListingRHSide() {
         const minutes = Math.floor((diff / (1000 * 60)) % 60);
         const seconds = Math.floor((diff / 1000) % 60);
     
-        setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s remaining`);
+        setTimeRemaining(`${days}d ${hours}h ${minutes}m ${seconds}s`);
         }, 1000);
     
         return () => clearInterval(interval); // Cleanup
@@ -87,7 +87,7 @@ function ListingRHSide() {
 
     return (
         <>
-        {bidOverlay && <ListingBid1 setBidOverlay={setBidOverlay} timeRemaining={timeRemaining} listing={listing}/> }
+        {bidOverlay && <ListingBid setBidOverlay={setBidOverlay} timeRemaining={timeRemaining} listing={listing}/> }
 
         <div className={styles.listingRHside}>
             {listing ? (
