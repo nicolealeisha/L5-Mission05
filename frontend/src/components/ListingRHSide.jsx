@@ -113,8 +113,11 @@ function ListingRHSide() {
                         <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
                         <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
                         <p className={styles.reserveTxt}>
-                            No reserve
-                            <br />
+                            {(listing.reserve_price == 0 ) && 'No reserve' }
+                            {(listing.reserve_price > 0 && listing.reserve_price < listing.current_bid) && `Reserve met`}
+                            {(listing.reserve_price > 0 && listing.reserve_price > listing.current_bid) && `Reserve not met`}
+                        </p>
+                        <p className={styles.bidTxt}>
                             No bids
                         </p>
                     </div>

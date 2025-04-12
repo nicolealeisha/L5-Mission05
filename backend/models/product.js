@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
     start_price: {type: Number},
     reserve_price: {type: Number},
     buy_now_price: {type: Number},
-    current_bid: {type: Number},
+    current_bid: { type: [Number], default: [] }, // Ammended to make this an array of bids
     image: {type: String},
     category: {type: String},
     subcategory: {type: String},

@@ -24,6 +24,40 @@ function ListingBid(props) {
         setSecondaryBidScreen(true);
     }
 
+    const confirmBid = async () => {
+        if (!bidAmount) {
+            alert("Please enter a bid amount.");
+            return;
+        }
+        if (bidAmount <= props.listing.current_bid) {
+            alert("Your bid must be higher than the current bid.");
+            return;
+        }
+
+        const response = await fetch(`http://localhost:3000/bid/${props.listing.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ "current_bid": bidAmount }),
+        });
+        if (!response.ok) {
+            alert("Error placing bid. Please try again.");
+            return;
+        }
+        const data = await response.json();
+        if (data.success) {
+            alert("Bid placed successfully!");
+            props.setBidOverlay(false); // Close the overlay
+            // refresh the page to pull new data
+            // this is a bit of a hack, but it works for now. ideally we would update the state of the listing to reflect the new bid amount
+            window.location.reload();
+        }
+        else {
+            alert("Error placing bid. Please try again.");
+        }
+    }
+
     return (
         <div className={`${props.bidOverlay ? styles.inActive : styles.listingBidOverlay}`}>    
                 <form className={styles.listingBidForm}>
@@ -49,7 +83,7 @@ function ListingBid(props) {
                     <div className={styles.bidConfirm}>
                         <h2>Do you want to make a bid for <b>${bidAmount}?</b></h2>
                         <div className={styles.secondaryBidBtns}>
-                            <button type="button" className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={closeBox}>Yes, place bid</button>
+                            <button type="button" className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={confirmBid}>Yes, place bid</button>
                             <button type="button" className={`${styles.cancelBtn} ${styles.inverseBtn}`} onClick={() => setSecondaryBidScreen(false)}>Go back</button>
                         </div>
                     </div>

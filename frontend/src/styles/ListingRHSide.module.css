@@ -107,10 +107,15 @@ h3{
     color: #0076BC;
 }
 
-.reserveTxt{
+.reserveTxt, .bidTxt{
     color: #8A8685;
     font-size: 12px;
     text-align: center;
+    margin: 8px 0 0 0;
+}
+
+.bidTxt{
+    margin-bottom: 12px;
 }
 
 .buyerProtectionContainer{
