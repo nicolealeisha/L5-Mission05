@@ -21,7 +21,7 @@ mongoose.Promise = global.Promise;
 // Connect to the database using ipv4 address specifically
 // team to confirm their connection string is correct
 mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
-    serverSelectionTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 3000,
     // explicitly set the server selection timeout to 30 seconds to avoid the error "Server selection timed out after 30000 ms"
 })
     .then(() => {
@@ -40,6 +40,7 @@ const testShutdown = require('./routes/testShutdown');
 // Set up routes
 app.use(productListingRoute);
 app.use(searchResultsRoute);
+app.use(testShutdown);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
