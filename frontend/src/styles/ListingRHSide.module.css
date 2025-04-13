@@ -34,8 +34,15 @@ h3{
     align-items: flex-start; /* Align right side to the top */
 }
 
+.priceContainer p, .sellerLocation {
+    color: #44413D;
+    font-size: 12px;
+    font-weight: normal;
+}
+
 .listingInfo{
     width: 100%;
+    font-size: 12px;
 }
 
 .watchlistCount{
@@ -198,10 +205,13 @@ h3{
 
 .sellerInfo{
     width: 70%;
+    margin: 4px 0;
 }
 
 .sellerName{
     color: #0076BC;
+    font-size: 12px;
+    margin: 4px 0;
 }
 
 .sellerRatingPercentage{
@@ -211,6 +221,7 @@ h3{
 
 .sellerRating, .sellerLocation{
     color: #8A8685;
+    margin: 4px 0;
 }
 
 .sellerRatingPercentage, .sellerRating{

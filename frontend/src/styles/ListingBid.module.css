@@ -6,32 +6,33 @@ a:hover{
     text-decoration: underline;
 }
 
-h1{
+.listingBidOverlay h1 {
     color: #44413D;
     font-size: 20px;
     font-weight: extrabold;
 }
 
-h2{
+.listingBidOverlay h2{
     color: #44413D;
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
 }
 
-h3{
+.listingBidOverlay h3{
     color: #44413D;
     font-size: 12px;
     font-weight: bold;
 }
 
-p{
+.listingBidOverlay p{
     color: #44413D;
     font-size: 12px;
     font-weight: normal;
+    margin: 0;
 }
 
-button{
+.listingBidOverlay button{
     padding: 12px 8px;
     font-size: 16px;
     font-weight: bold;

@@ -12,16 +12,18 @@ function ListingBid(props) {
         props.setBidOverlay(false); // Toggle the handleClose state
     }
 
-    const placeBid = () => {
+    const placeBid = (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
         if (!bidAmount) {
             alert("Please enter a bid amount.");
-            return;
         }
-        if (bidAmount <= props.listing.current_bid) {
+        if (bidAmount <= props.listing.current_bid[props.listing.current_bid.length - 1]) {
             alert("Your bid must be higher than the current bid.");
-            return;
         }
-        setSecondaryBidScreen(true);
+        else {
+            setSecondaryBidScreen(true);
+        }
     }
 
     const confirmBid = async () => {
@@ -29,20 +31,22 @@ function ListingBid(props) {
             alert("Please enter a bid amount.");
             return;
         }
-        if (bidAmount <= props.listing.current_bid) {
+        if (bidAmount <= props.listing.current_bid[props.listing.current_bid.length - 1]) {
             alert("Your bid must be higher than the current bid.");
             return;
         }
 
-        const response = await fetch(`http://localhost:3000/bid/${props.listing.id}`, {
+        const response = await fetch(`http://localhost:3000/bid/${props.listing._id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ "current_bid": bidAmount }),
+            body: JSON.stringify({ "current_bid": Number(bidAmount) }),
         });
+        console.log(response);
         if (!response.ok) {
             alert("Error placing bid. Please try again.");
+            console.log(response.statusText);
             return;
         }
         const data = await response.json();
@@ -74,7 +78,7 @@ function ListingBid(props) {
                             </div>  
                             <div className={styles.auctionInfoBtm}>
                                 <p>No reserve, no bid</p>
-                                <h2>${props.listing.current_bid}</h2>
+                                <h2>${props.listing.current_bid[props.listing.current_bid.length - 1]}</h2>
                             </div>
                         </div>                               
                     </div>
