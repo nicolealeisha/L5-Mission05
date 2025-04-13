@@ -1,0 +1,5 @@
+{
+  "typeAcquisition": {
+    "include": ["jest", "@types/node", "@types/react", "@types/react-dom"]
+  }
+}

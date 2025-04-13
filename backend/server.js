@@ -35,6 +35,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
 // Import routes
 const productListingRoute = require('./routes/productListing');
 const searchResultsRoute = require('./routes/searchResults');
+const testShutdown = require('./routes/testShutdown');
 
 // Set up routes
 app.use(productListingRoute);
