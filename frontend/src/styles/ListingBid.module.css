@@ -10,10 +10,10 @@ a:hover{
     color: #44413D;
     font-size: 20px;
     font-weight: extrabold;
+    margin-top: 0;
 }
 
 .listingBidOverlay h2{
-    color: #44413D;
     font-size: 16px;
     font-weight: bold;
     margin-top: 0;
@@ -23,16 +23,17 @@ a:hover{
     color: #44413D;
     font-size: 12px;
     font-weight: bold;
+    margin-top: 4px;
 }
 
 .listingBidOverlay p{
-    color: #44413D;
+    color: #8A8685;
     font-size: 12px;
     font-weight: normal;
     margin: 0;
 }
 
-.listingBidOverlay button{
+button{
     padding: 12px 8px;
     font-size: 16px;
     font-weight: bold;
@@ -105,6 +106,7 @@ a:hover{
 
 .listingImage{
     width: 30%;
+    margin: 4px;
 }
 .auctionInfo {
     margin: 0 20px;
@@ -115,8 +117,12 @@ a:hover{
     height: 100%;
 }
 
-.auctionInfoTop > h2, auctionInfoTop > p{
+.auctionInfoTop > h2, .auctionInfoTop > p{
     margin: 0;
+}
+
+.auctionCurrentPrice {
+    color: #44413D;
 }
 
 .auctionInfoTop {
@@ -140,11 +146,16 @@ a:hover{
 
 .bidDetails{
     margin: 4px 0;
+    width: 100%;
+}
+
+.bidDetails > h2{
+    color: #8A8685;
 }
 
 .bidBox{
     height: 40px;
-    width: 100%;
+    width: 50%;
     margin: 8px 0 0 0;
 }
 
@@ -197,4 +208,36 @@ a:hover{
     width: 100%;
     gap: 12px;
     margin: 8px 0;
+}
+
+.shippingDetails{
+    margin-top: 12px;
+    width: 100%;
+}
+
+.shippingDetails > h2{
+    color: #8A8685;
+}
+
+.shippingForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    color: #8A8685;
+    margin-top: 4px;
+
+}
+
+.shippingOptions{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin: 4px 0;
+}
+
+.shippingPrice{
+    text-align: end;
 }
