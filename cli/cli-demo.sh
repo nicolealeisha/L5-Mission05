@@ -1,9 +1,9 @@
 doit() {
     echo "About to do $*"
-    sleep 1
+    sleep 0.5
     eval "$*"
     echo
-    sleep 1
+    sleep 0.5
 }
 echo "replace ./cli with npm run cli or add execute permission to file with 'chmod +x ./cli.js ./cli ./cli.exe'"
 echo
