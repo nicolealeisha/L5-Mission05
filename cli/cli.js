@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import { addAuctionItem, findAuctionItems, dbstring, itemCount, updateAuctionItem, deleteAuctionItem, listAuctionItems, exportAuctionItems, importAuctionItems, deleteAllAuctionItems } from './database.js';
+import { addAuctionItem, findAuctionItems, dbstring, itemCount, updateAuctionItem, deleteAuctionItemByKeyword, deleteAuctionItemById, listAuctionItems, exportAuctionItems, importAuctionItems, deleteAllAuctionItems, findIdFirstMatchingItem } from './database.js';
 import { Command } from 'commander';
 import fs, { writeFileSync} from 'node:fs';
 import path from 'node:path';
+import argv from 'node:process';
 
 const program = new Command();
-
 
 function isText(t) {
     if (t.length > 4 && isNaN(t)) { return true; }; return false;
@@ -23,8 +23,8 @@ function printDebug(options, command) {
 }
 
 program
-    .version('version'))
-    .description('productName'))
+    .version('version')
+    .description('productName')
 
 program
     .command('add') // <title> <description> <reserve-price> <start-price>
@@ -59,6 +59,13 @@ program
     .argument('<keyword or _id>', 'keyword or _idm')
     .action((keyword, options, command) => findAuctionItems(keyword));
  
+
+program
+    .command('id')
+    .description('Find just the auction ID by keyword')
+    .argument('<keyword>', 'keyword')
+    .action((keyword, options, command) => findIdFirstMatchingItem(keyword));
+
 program
     .command('update')
     .description('Update an auction item by id')
@@ -86,17 +93,34 @@ program
     });
 
 program
-    .command('delete')
-    .description('Delete an auction item by id')
-    .argument('<_id>', '_id of the auction item')
+    .command('del')
+    .description('Delete an auction item BY ID')
+    .argument('<_id>', 'requires _id of the auction item, delete for keyword')
     .option('-v, --debug', 'output extra debugging')
     .option('--all', 'DANGER: delete entire collection immediately!')
     .action((_id, options) => {
         if (options.all) {
             deleteAllAuctionItems();
         } else {
-            deleteAuctionItem(_id);
+            deleteAuctionItemById(_id);
         }
+    })
+
+program
+    .command('delete')
+    .description('Delete an auction item by keyword')
+    .argument('<keyword>', 'keyword to search and find 1 to delete ASAP')
+    .option('-v, --debug', 'output extra debugging')
+    .option('--all', 'DANGER: delete entire collection immediately!')
+    .action((keyword, options) => {
+        if (options.debug) {
+            console.info(keyword)
+        } 
+        if (options.all) {
+            deleteAllAuctionItems();
+            return;
+        }
+        deleteAuctionItemByKeyword(keyword);
     })
 
 program
@@ -149,16 +173,41 @@ program
             console.error(`File ${jsonfile} does not exist`);
         }
     });
+// const  firstArg = argv.argv[1];
+const  firstArg = argv[1];
 
- const cli = (args) => {
+const cli = (firstArg) => {
+        // console.log(firstArg);
+
     if (process.env.RUNNINGTEST === 'true') {
         console.log(`exitOverride ${process.env.RUNNINGTEST}`)
-        program.exitOverride(args);
-    } else {
-        console.log();
+        program.exitOverride(argv);
+        return;
+    } 
+    if (firstArg !== "id")  {
+
         console.log(`Connected to ${dbstring} with ${itemCount} auction items`);
-        program.parse(process.argv);
     }
- }
+    program.parse(process.argv);
+
+}
 cli()
 export default { cli,program } 
+
+
+
+// "jest": {
+//     "testEnvironment": "node",
+//     "transform": {
+//       "^.+\\.js$": "babel-jest"
+//     },
+//     "testPathIgnorePatterns": [
+//       "/node_modules/"
+//     ],
+//     "collectCoverage": true,
+//     "coverageDirectory": "./coverage",
+//     "coverageReporters": [
+//       "text",
+//       "html"
+//     ]
+//   },

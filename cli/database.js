@@ -1,33 +1,25 @@
-import Customer from './models/customer.js';
+// import Customer from './models/customer.js';
 // import AuctionItem from './models/auction-item.js';
 // import productSchema from './models/product.js';
 import Product from './models/product.js';
 import mongoose from 'mongoose';
-
-// const AuctionItem = productSchema;
+import process from 'node:process';
+const args = process.argv;
 const AuctionItem = Product;
-mongoose.Promise = global.Promise;
 const dbstring = 'mongodb://127.0.0.1:27017/mission-05'
+mongoose.Promise = global.Promise;
+
 process.stdout.write(`Connecting to MongoDB...   ${dbstring} (check db connection)`);  // clear current text
 await mongoose.connect(dbstring, {});
-process.stdout.cursorTo(0);  // move cursor to beginning of line
-process.stdout.clearLine();  // clear current text
+const { isTTY } = process.stdout;
+if (isTTY) {
+  process.stdout.cursorTo(0);  // move cursor to beginning of line
+  process.stdout.clearLine();  // clear current text  
+  // process.stdout.write('-'.repeat(100));
+}
 
 let itemCount = await AuctionItem.countDocuments({  });
-const adminConnection = `mongodb://127.0.0.1:27017/admin`  
-const adminListAllDB = async () => {
-    mongoose.connect(adminConnection,  {  useNewUrlParser: true ,  useUnifiedTopology: true }).then( (MongooseNode) => { 
 
-    /* I use the default nativeConnection object since my connection object uses a single hostname and port. Iterate here if you work with multiple hostnames in the connection object */
-                        
-    const nativeConnetion =  MongooseNode.connections[0]
-
-    //now call the list databases function
-        new Admin(nativeConnetion.db).listDatabases(function(err, results){
-            console.log(results)  //store results and use
-        });
-    })
-} 
 
 
 const addAuctionItem = (auctionItem) => {
@@ -43,9 +35,10 @@ const addAuctionItem = (auctionItem) => {
     .create(auctionItem)
     .then((auctionItem) => {
       itemCount++;
-      console.info(`Auction Item ${itemCount} ${auctionItem.title} with reserve of $${auctionItem.reserve_price}, start bid $${auctionItem.start_price} created`);
       })
     .finally(() => {
+      console.info(`Auction Item ${itemCount} ${auctionItem.title} with reserve of $${auctionItem.reserve_price}, start bid $${auctionItem.start_price} created`);
+
       mongoose.connection.close();
   });
 }
@@ -89,6 +82,22 @@ const findAuctionItems = async (keyword) => {
     });  
 }
 
+const findIdFirstMatchingItem = async (keyword) => {
+
+  const search = new RegExp(keyword, 'i');
+  AuctionItem.findOne({ $or: [{ title: search }, { description: search }] })
+    .then((item) => {
+      if (item) {
+        console.info(item);
+        console.log();
+        console.log(item._id.toString());
+        return item._id.toString();
+      }
+    })
+    .finally(() => {
+      mongoose.connection.close(); 
+    });  
+}
 
 const findCustomers = async (name) => {
   const search = new RegExp(name, 'i');
@@ -113,14 +122,14 @@ const updateAuctionItem = async (_id, item) => {
     });
 }
 
-const deleteAuctionItem = async (_id) => {
+const deleteAuctionItemById = async (_id) => {
 
   await AuctionItem
     .deleteOne({_id})  // Deletes the document, returns a promise
     .exec() 
     .then((_id) => {
       itemCount--;
-      console.info(`Item ${_id} deleted.`);
+      console.info(`🔥 Item ${_id} deleted.`);
     })
     .finally(() => {
       mongoose.connection.close(); 
@@ -128,10 +137,23 @@ const deleteAuctionItem = async (_id) => {
 }
 
 
+const deleteAuctionItemByKeyword = async (keyword) => {
+const the_id = await findIdFirstMatchingItem(keyword);
+  await AuctionItem
+    .deleteOne({the_id})  // Deletes the document, returns a promise
+    .exec() 
+    .then((the_id) => {
+      itemCount--;
+      console.info(`🔥 Item ${the_id} deleted, ${itemCount} remain.`);
+    })
+    .finally(() => {
+      mongoose.connection.close(); 
+    });
+}
 const deleteAllAuctionItems = async () => {
   await AuctionItem.deleteMany({})
     .then(() => {
-      console.info(`All items deleted.`);
+      console.info(`🔥 All items deleted! use ./cli import to recover`);
       itemCount = 0;
     })
     .finally(() => {
@@ -176,4 +198,17 @@ const importAuctionItems = async (jsonfile) => {
     });
 }
 
-export { addCustomer, findCustomers, addAuctionItem, findAuctionItems, dbstring, itemCount, updateAuctionItem, deleteAuctionItem, listAuctionItems, deleteAllAuctionItems, exportAuctionItems, importAuctionItems, adminListAllDB }
+const adminListAllDB = async () => {
+    const adminConnection = `mongodb://127.0.0.1:27017/admin`  
+    mongoose.connect(adminConnection,  {  useNewUrlParser: true ,  useUnifiedTopology: true }).then( (MongooseNode) => { 
+    /* I use the default nativeConnection object since my connection object uses a single hostname and port. Iterate here if you work with multiple hostnames in the connection object */
+                       
+    const nativeConnetion =  MongooseNode.connections[0]
+    //now call the list databases function
+        new Admin(nativeConnetion.db).listDatabases(function(err, results){
+            console.log(results)  //store results and use
+        });
+    })
+} 
+
+export { addCustomer, findCustomers, addAuctionItem, findAuctionItems, dbstring, itemCount, updateAuctionItem, deleteAuctionItemById, deleteAuctionItemByKeyword, listAuctionItems, deleteAllAuctionItems, exportAuctionItems, importAuctionItems, adminListAllDB, findIdFirstMatchingItem }
