@@ -11,12 +11,14 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import ListingPayment from '../components/ListingPayment';
 import ListingQuestions from '../components/ListingQuestions';
 import ListingRHside from '../components/ListingRHSide';
+import { useNavigate } from 'react-router-dom';
 
 function Listing() {
     const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
     
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
@@ -35,6 +37,15 @@ function Listing() {
 
                 const data = await response.json();
                 setListing(data[0]);  // Set specific listing data in state
+
+                // Check if the listing data is available and if the url is correct
+                if (data[0]) {
+                    const { category, subcategory } = data[0];
+                    const correctPath = `/marketplace/${category}/${subcategory}/listing/${listingId}`;
+                    if (location.pathname !== correctPath) {
+                      navigate(correctPath, { replace: true });
+                    }
+                }
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
             } finally {
@@ -43,7 +54,7 @@ function Listing() {
         };
 
         fetchListing();
-    }, [listingId]);  // Fetch listing when listingId changes
+    }, [listingId, navigate]);  // Fetch listing when listingId changes
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
