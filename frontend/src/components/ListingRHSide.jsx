@@ -107,18 +107,30 @@ function ListingRHSide() {
                     </div>
 
                     <div className={styles.priceContainer}>
-                        <p>Starting price</p>
-                        <h2 className={styles.price}>${listing.start_price}.00</h2>
+                        {(listing.current_bid.length === 0 ) ?
+                        <><p>Starting price</p>
+                        <h2 className={styles.price}>${listing.start_price}</h2>
+                        </> :
+                        <>
+                        <p>Current bid</p>
+                        <h2 className={styles.price}>${listing.current_bid[listing.current_bid.length - 1]}</h2>
+                        </>}
+
+
                         <button className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={(()=> setBidOverlay(true))}>Place bid</button>
                         <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
                         <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
                         <p className={styles.reserveTxt}>
-                            {(listing.reserve_price == 0 ) && 'No reserve' }
-                            {(listing.reserve_price > 0 && listing.reserve_price < listing.current_bid) && `Reserve met`}
-                            {(listing.reserve_price > 0 && listing.reserve_price > listing.current_bid) && `Reserve not met`}
+                            {(listing.reserve_price === 0 ) && 'No reserve' }
+                            {(listing.reserve_price > 0 && listing.reserve_price < listing.current_bid[listing.current_bid.length - 1]) && `Reserve met`}
+                            {(listing.reserve_price > 0 && listing.reserve_price > listing.current_bid[listing.current_bid.length - 1] || 
+                            listing.current_bid.length === 0 && listing.reserve_price > 0
+                            ) && `Reserve not met`}
                         </p>
                         <p className={styles.bidTxt}>
-                            No bids
+                            {(listing.current_bid.length === 0) && 'No bids'}
+                            {(listing.current_bid && listing.current_bid.length === 1) && `1 bid`}
+                            {(listing.current_bid && listing.current_bid.length > 1) && `${listing.current_bid.length} bids`}
                         </p>
                     </div>
 
