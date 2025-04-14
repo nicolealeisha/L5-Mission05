@@ -1,17 +1,31 @@
-import { render, screen, expect } from '@testing-library/react'
+import { act } from 'react';
+import ReactDOMClient from 'react-dom/client';
 import App from '../App';
+const mockRender = jest.fn();
 
-// test("<App/> renders successfully", () => {
-test('HeartBeat', async () => {
-    expect(true).toBeTruthy();
+jest.mock("react-dom/client", () => ({
+    createRoot: jest.fn().mockImplementation(() => ({
+        render: mockRender,
+    }))
+}));
 
-    expect(!!process.env.SERVER_URL).toBeTruthy();
-    expect(!!process.env.PORT).toBeTruthy();
-    expect(!!process.env.PORT_ALT).toBeTruthy();
-    expect(!!process.env.ENVIRONMENT).toBeTruthy();
+it('can render an App tag', async () => {
+    const containeRRR = document.createElement('div');
+    document.body.appendChild(containeRRR);
+
+    // ✅ Render the component inside act().
+    await act((containeRRR) => {
+        ReactDOMClient.createRoot(containeRRR).render(<App />);
+    });
+
+    const Header = containeRRR.querySelector('Header');
+    const Footer = containeRRR.querySelector('Footer');
+    expect(mockRender).toHaveBeenCalled();
+    expect(Header).toContain('Nav');
+    expect(Footer).toBe('Footer');
+    expect(/TradeMe/).toBeInTheDocument();
 
 });
-
 
 // it.todo("Test if the App component renders successfully");
 // render(<App/>);

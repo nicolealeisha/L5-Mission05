@@ -11,7 +11,7 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import ListingPayment from '../components/ListingPayment';
 import ListingQuestions from '../components/ListingQuestions';
 import ListingRHside from '../components/ListingRHSide';
-import ListingBid1 from '../components/ListingBid';
+// import ListingBid1 from '../components/ListingBid';
 
 
 function Listing() {
@@ -19,7 +19,7 @@ function Listing() {
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
     // Fetch listing data from the backend using the listingId
     useEffect(() => {
         const fetchListing = async () => {
@@ -27,7 +27,7 @@ function Listing() {
                 const response = await fetch(`http://localhost:3000/listing/${listingId}`, {
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json', 
+                        'Content-Type': 'application/json',
                     },
                 });
 
@@ -52,14 +52,14 @@ function Listing() {
 
     const formatDate = (isoDateString) => {
         const date = new Date(isoDateString);
-      
+
         return date.toLocaleString('en-NZ', {
-          weekday: 'long',      
-          day: 'numeric',       
-          month: 'long', 
-          year: 'numeric',            
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
         });
-      };
+    };
 
     return (
         <>
@@ -79,14 +79,14 @@ function Listing() {
                             <div className={styles.listingRHsideMobile}>
                                 <ListingRHside />
                             </div>
-                        
+
                             <div className={styles.listingDetails}>
                                 <h2>Details</h2>
                                 <p className={styles.description}>Condition: {listing.condition}</p>
                                 <h2>Full Description</h2>
                                 <p className={styles.description}>{listing.description}</p>
                             </div>
-                            
+
                             <div className={styles.listingPayment}>
                                 <ListingPayment />
                             </div>
@@ -106,25 +106,25 @@ function Listing() {
                                 </div>
                                 <div className={styles.sellerDetailDivider}><p>Location</p><p className={styles.rhDetails}>{listing.seller_location}</p></div>
                                 <div className={styles.sellerDetailDivider}><p>Member since</p><p className={styles.rhDetails}>{formatDate(listing.seller_member_since)}</p></div>
-                                <div className={styles.sellerDetailDivider}><a href='/404' className={styles.sellerLink}>Seller's other listings</a><p className={styles.rhDetails}><FontAwesomeIcon icon={faAngleDown} className={`${styles.faIcon} ${styles.angleDown}`}/></p></div>
+                                <div className={styles.sellerDetailDivider}><a href='/404' className={styles.sellerLink}>Seller's other listings</a><p className={styles.rhDetails}><FontAwesomeIcon icon={faAngleDown} className={`${styles.faIcon} ${styles.angleDown}`} /></p></div>
                                 <div className={styles.sellerDetailsCentre}>
-                                    <button className={`${styles.blueBtn} ${styles.sellerBtn}`}><FontAwesomeIcon icon={faHeartCirclePlus} className={styles.favouritesIcon}/>Add to Favourite Sellers</button>
+                                    <button className={`${styles.blueBtn} ${styles.sellerBtn}`}><FontAwesomeIcon icon={faHeartCirclePlus} className={styles.favouritesIcon} />Add to Favourite Sellers</button>
                                     <a href='/404'>Read our safe buying guide</a>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div className={styles.shareListing}>
-                                <a className={styles.share} ><FontAwesomeIcon icon={faShareNodes} className={styles.shareIcon}/> Share this listing</a>
+                                <a className={styles.share} ><FontAwesomeIcon icon={faShareNodes} className={styles.shareIcon} /> Share this listing</a>
                                 <span className={styles.shareDot}>•</span>
                                 <span className={styles.shareInfo}>Listing #{listing._id}</span>
                                 <span className={styles.shareDot}>•</span>
                                 <span className={styles.shareInfo}>Page views: 40</span>
-                            </div>  
+                            </div>
                             <div className={styles.communityWatchInfo}>
                                 <span className={styles.communityWatch}><FontAwesomeIcon icon={faStar} className={styles.commWatchIcon} /> Community Watch:</span>
                                 <a className={styles.commWatchReport}>Report this listing</a>
                             </div>
-                            
+
                         </div>
 
                         <div className={styles.listingRHsideDesktop}>
