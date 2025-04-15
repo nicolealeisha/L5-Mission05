@@ -25,9 +25,15 @@ nav, .firstLineFooter {
 nav div {
 /* border: 1px solid #85807c */
 }
+/* 
+thomas can you change this please and reference your items more specifically
+so that it doesn't affect other items in the project
+it's throwing off my header layout  */
+
 nav div a {
     display: inline-grid;
 }
+
 div.firstLineFooter {
     width: 100%;
 }

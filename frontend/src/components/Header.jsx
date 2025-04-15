@@ -46,18 +46,20 @@ function Header() {
             </header>
             <header className={styles.secHeader}>
                 <nav className={styles.secNavbar}>
+                    <div className={styles.leftGroup}>
                     <img className={styles.logo} src="/images/logo.png" alt="Trade Me Logo" />
-                    <ul className={styles.secLeftNavList}>
-                        <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
-                        <li className={styles.navItem}>
-                            <form className={`${styles.navItem} ${styles.navExtendedSearch}`} action="/search" name="search" method="get" onSubmit={submitForm} onClick={submitForm} >
-                                <FontAwesomeIcon icon={faMagnifyingGlass} className={`${styles.faIcon} ${styles.faBtn}`} onClick={(()=> submitForm, handleSearchClick)} />
-                                    {/* hey tom i've put both of our functions into the onClick for the search button. i couldn't get yours to work though...  */}
-                                    {/* mine is for mobile view functionality, to fix up the search bar displaying properly on mobile */}
-                                <input name="kw" type='text' placeholder='Search' className={`${styles.navSearch} ${searchActive ? styles.searchActive : styles.searchHidden}`} ></input>
-                            </form>
-                        </li>
-                    </ul>
+                        <ul className={styles.secLeftNavList}>
+                            <li className={`${styles.navItem} ${styles.mobHide} ${styles.navItemBrowse}`}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
+                            <li className={styles.navItem}>
+                                <form className={`${styles.navItem} ${styles.navExtendedSearch}`} action="/search" name="search" method="get" onSubmit={submitForm} onClick={submitForm} >
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} className={`${styles.faIcon} ${styles.faBtn}`} onClick={(()=> submitForm, handleSearchClick)} />
+                                        {/* hey tom i've put both of our functions into the onClick for the search button. i couldn't get yours to work though...  */}
+                                        {/* mine is for mobile view functionality, to fix up the search bar displaying properly on mobile */}
+                                    <input name="kw" type='text' placeholder='Search' className={`${styles.navSearch} ${searchActive ? styles.searchActive : styles.searchHidden}`} ></input>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                     <ul className={styles.secRightNavList}>
                         <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>

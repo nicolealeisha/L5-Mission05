@@ -148,7 +148,7 @@ function ListingRHSide() {
                             <img src={listing.seller_image} alt='Seller' className={styles.sellerAvatar} />
                         </div>
                         <div className={styles.sellerInfo}>
-                            <p className={styles.sellerName}>{listing.seller_name} name</p>
+                            <p className={styles.sellerName}>{listing.seller_name}</p>
                             <span className={styles.sellerRatingPercentage}>{listing.seller_rating}%</span> <span className={styles.sellerRating}>positive feedback</span>
                             <p className={styles.sellerLocation}>Seller located in {listing.seller_location}</p>
                         </div>
