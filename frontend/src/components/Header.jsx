@@ -61,10 +61,10 @@ function Header() {
                         </ul>
                     </div>
                     <ul className={styles.secRightNavList}>
-                        <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
+                        <li className={`${styles.navItem} ${styles.watchlist} ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faBinoculars} className={styles.faIcon}/> Watchlist</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faHeart} className={styles.faIcon} />Favourites</a></li>
                         <li className={`${styles.navItem} ${styles.mobHide}`}><a href="/404"><FontAwesomeIcon icon={faPencil} className={styles.faIcon}/>Start a listing</a></li>
-                        <li className={`${styles.navItem}  ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`}/>My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`}/></a></li>
+                        <li className={`${styles.navItem} ${styles.navMyTrademe} ${searchActive && styles.searchHide}`}><a href="/404"><FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.deskHide}`}/>My Trade Me <FontAwesomeIcon icon={faCircleUser} className={`${styles.faIcon} ${styles.mobHide}`}/></a></li>
                     </ul>
                 </nav>
             </header>

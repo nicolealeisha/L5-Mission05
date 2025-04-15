@@ -116,9 +116,11 @@ function ListingRHSide() {
                         <h2 className={styles.price}>${listing.current_bid[listing.current_bid.length - 1]}</h2>
                         </>}
 
-
-                        <button className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={(()=> setBidOverlay(true))}>Place bid</button>
-                        <button className={`${styles.buyBtn} ${styles.blueBtn}`}>Buy Now</button>
+                        {(timeRemaining == 'Auction ended') 
+                            ? <button className={`${styles.bidBtn} ${styles.greyBtn}`} onClick={(()=> alert('Auction ended'))}>Place bid</button>
+                            : <button className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={(()=> setBidOverlay(true))}>Place bid</button>
+                        }
+                        <button className={`${(timeRemaining == 'Auction ended') ?  `${styles.greyBtn} ${styles.bidBtn}` : `${styles.blueBtn}`} ${styles.buyBtn}`}>Buy Now</button>
                         <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
                         <p className={styles.reserveTxt}>
                             {(listing.reserve_price === 0 ) && 'No reserve' }

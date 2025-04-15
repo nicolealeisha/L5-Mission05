@@ -13,7 +13,8 @@ footer {
     justify-content: center;
     align-items: center;
 }
-nav, .firstLineFooter {
+
+.firstLineFooter {
     background-color: white;
     display: -ms-inline-grid;
     justify-content: space-between;
@@ -30,9 +31,9 @@ thomas can you change this please and reference your items more specifically
 so that it doesn't affect other items in the project
 it's throwing off my header layout  */
 
-nav div a {
+/* nav div a {
     display: inline-grid;
-}
+} */
 
 div.firstLineFooter {
     width: 100%;
