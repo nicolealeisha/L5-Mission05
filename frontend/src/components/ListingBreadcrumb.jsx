@@ -1,54 +1,56 @@
 import styles from '../styles/ListingBreadcrumb.module.css';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function ListingBreadcrumb() {
-    const location = useLocation(); // Get current path from the URL
+    const location = useLocation();
+    const [isMobile, setIsMobile] = useState(false);
 
-    // Split the pathname by '/' to get individual path segments
-    const paths = location.pathname.split('/').filter(Boolean);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 320);
+        };
 
-    // If there are no paths, we can assume it's the home page
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const fullPaths = location.pathname.split('/').filter(Boolean);
+    const stopIndex = fullPaths.findIndex(path => path.toLowerCase() === 'listing');
+    const paths = stopIndex !== -1 ? fullPaths.slice(0, stopIndex) : fullPaths;
+
     if (paths.length === 0) {
         return <div className={styles.breadcrumb}><span>Home</span></div>;
     }
 
-    // Start the breadcrumb with "Home"
-    let breadcrumbLinks = [
-        <span key="home"><a href="/">Home</a></span>
-    ];
+    const capitalize = (str) =>
+        str.replace(/(?:^|\s)\S/g, (match) => match.toUpperCase()).replace(/-/g, ' ');
 
-    // Capitalize the first letter of each word in the string
-    const capitalizeFirstLetter = (str) => {
-        return str
-            .replace(/(?:^|\s)\S/g, (match) => match.toUpperCase()) // Capitalize the first letter of each word
-            .replace(/-/g, ' '); // Replace hyphens with spaces
-    };
+    const breadcrumbLinks = [];
 
-    // Use a standard for loop to control when to stop
+    // Always start with Home
+    breadcrumbLinks.push(
+        <span key="home">
+            <a href="/">Home</a>
+        </span>
+    );
+
     for (let i = 0; i < paths.length; i++) {
         const path = paths[i];
-
-        // Stop processing further if the path is "listing"
-        if (path.toLowerCase() === 'listing') {
-            break;
-        }
-
-        const pathName = capitalizeFirstLetter(decodeURIComponent(path)); // Capitalize and decode path segment
-        const url = `/${paths.slice(0, i + 1).join('/')}`; // Build URL for the current segment
+        const pathName = capitalize(decodeURIComponent(path));
+        const url = `/${paths.slice(0, i + 1).join('/')}`;
 
         breadcrumbLinks.push(
             <span key={url}>
                 {' / '}
-                <a href={url}>{pathName}</a>
+                <a href={url}>{isMobile && i !== paths.length - 1 ? '...' : pathName}</a>
             </span>
         );
     }
 
-    return (
-        <div className={styles.breadcrumb}>
-            {breadcrumbLinks}
-        </div>
-    );
-};
+    return <div className={styles.breadcrumb}>{breadcrumbLinks}</div>;
+}
 
 export default ListingBreadcrumb;

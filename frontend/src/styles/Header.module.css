@@ -57,14 +57,25 @@ a:hover{
     width: 100%;
 }
 
+.leftGroup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 20px;
+  }
+
 .secNavbar a{
     color: #44413D;
     font-size: 16px;
 }
 
-.logo{
+.logo {
     max-width: 150px;
-}
+    height: auto;
+    display: inline-block;
+    vertical-align: middle; 
+  }
 
 .faIcon{
     padding: 0 5px;
@@ -82,13 +93,18 @@ a:hover{
 
 .secLeftNavList{
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     gap: 20px; 
+    padding-left: 12px;
+    width: 100%;
 }
 
 .secRightNavList{
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+    width: 100%;
 }
 
 .deskHide{
@@ -97,16 +113,111 @@ a:hover{
 
 /* Media Queries */
 
-@media (max-width: 320px) {
+
+@media (max-width: 1135px) {
+
+    .topNavbar a {
+        font-size: 10px;
+    }
+
+    .topLeftNavList, .topRightNavList {
+        gap: 10px; 
+    }
+
+    .logo{
+        max-width: 20%;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .navItem{
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .secNavbar a{
+        font-size: 14px;
+    }
+
+    .secLeftNavList, .secRightNavList{
+        gap: 8px; 
+        margin: 8px;
+        padding-left: 8px;
+        align-items: center;
+    }
+
+    .navSearch{
+        width: 50%;
+    }
+
+    .navItemBrowse{
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 850px) {
+    
+    .logo {
+        content: url('/images/mob-logo.png'); 
+        height: auto;
+    }
+
+    .leftGroup{
+        gap: 8px;
+    }
+
+    .secNavbar a {
+        font-size: 12px;
+    }
+
+    .secNavbar{
+        padding: 0 12px;
+    }
+
+    .secLeftNavList{
+        width: 70%;
+    }
+
+    .navSearch{
+        font-size: 12px;
+    }
+
+    .navExtendedSearch{
+        width: 100%;
+    }
+
+    .watchlist{
+        width: 80%;
+    }
+
+    .navMyTrademe{
+        width: 110%;
+    }
+    
+}
+
+@media (max-width: 640px) {
 
     .topHeader{
         display: none;
     }
 
-    .logo {
-        content: url('/images/mob-logo.png'); 
-        height: auto;
-      }
+    .mobHide{
+        display: none;
+    }
+
+    .deskHide{
+        display: block;
+    }
+
+}
+
+@media (max-width: 320px) {
+
+    .topHeader{
+        display: none;
+    }
 
     .secNavbar{
         font-size: 12px;
@@ -121,16 +232,17 @@ a:hover{
         align-items: center;
     }
 
-    .faBtn{
-        cursor: pointer;
-    }
-
+    
     .mobHide{
         display: none;
     }
 
     .deskHide{
         display: block;
+    }
+
+    .faBtn{
+        cursor: pointer;
     }
 
     .navSearchBtn{

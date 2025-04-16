@@ -11,16 +11,17 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 import ListingPayment from '../components/ListingPayment';
 import ListingQuestions from '../components/ListingQuestions';
 import ListingRHside from '../components/ListingRHSide';
-// import ListingBid1 from '../components/ListingBid';
-
+import { useNavigate } from 'react-router-dom';
+import ListingOtherListings from '../components/ListingOtherListings';
 
 function Listing() {
     const { listingId } = useParams(); // Extract dynamic params from the URL
     const [listing, setListing] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    // Fetch listing data from the backend using the listingId
+    const [otherListings, setOtherListings] = useState([]);
+    const navigate = useNavigate();
+    
     useEffect(() => {
         const fetchListing = async () => {
             try {
@@ -30,22 +31,54 @@ function Listing() {
                         'Content-Type': 'application/json',
                     },
                 });
-
+    
                 if (!response.ok) {
                     throw new Error('Listing not found or API request failed');
                 }
-
+    
                 const data = await response.json();
-                setListing(data[0]);  // Set specific listing data in state
+                const listingData = data[0];
+                setListing(listingData);
+    
+                // Optional: redirect based on listing path
+                if (listingData) {
+                    const { category, subcategory } = listingData;
+                    const correctPath = `/marketplace/${category}/${subcategory}/listing/${listingId}`;
+                    if (location.pathname !== correctPath) {
+                        navigate(correctPath, { replace: true });
+                    }
+                }
+    
+                return listingData; // return this for the next function
             } catch (err) {
-                setError(err.message);  // Set error if the API call fails
-            } finally {
-                setLoading(false);  // Set loading to false when the request is complete
+                setError(err.message);
+                return null;
             }
         };
+    
+        const fetchRelatedListings = async (listing) => {
+            if (!listing) return;
 
-        fetchListing();
-    }, [listingId]);  // Fetch listing when listingId changes
+            try {
+                const response = await fetch(`http://localhost:3000/search/${listing.seller_name}`);
+                const otherListings = await response.json();
+                setOtherListings(otherListings);
+
+            } catch (err) {
+                console.error('Error fetching related data:', err);
+            }
+        };
+    
+        const runAll = async () => {
+            setLoading(true);
+            const listingData = await fetchListing();   
+            await fetchRelatedListings(listingData);     
+            setLoading(false);
+        };
+    
+        runAll();
+    }, [listingId, navigate]);
+    
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -131,12 +164,16 @@ function Listing() {
                             <ListingRHside />
                         </div>
 
-
                     </>
                 ) : (
                     <div>No listing data available</div>
                 )}
             </div>
+            {/* hide this section if only 1 listing, as it returns current listing */}
+            {(otherListings.length > 1) &&
+            <div className={styles.otherListings}>
+                <ListingOtherListings listing={listing} otherListings={otherListings} />
+            </div>}
         </>
     );
 }

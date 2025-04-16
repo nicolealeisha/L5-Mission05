@@ -31,28 +31,61 @@ app.post('/bid/:id', async (req, res) => {
     const listingId = req.params.id; 
     const current_bid = req.body.current_bid; // Extract the current bid from the request body
 
-    // Ensure a valid search term was provided
     if (!listingId || !current_bid) {
         console.log(`Invalid listing: ${listingId}, current_bid: ${current_bid}`);
-        return res.status(400).send({ error: 'Invalid listing' });
+        return res.status(400).json({ success: false, error: 'Invalid listing or bid amount' });
     }
 
     try {
-        // find the correct listing by id
         const product = await productSchema.findById(listingId);
         if (!product) {
-            return res.status(404).send({ message: 'Listing not found' });
+            return res.status(404).json({ success: false, error: 'Listing not found' });
         }
 
-        // Update the current bid and save the product
-        product.current_bid = current_bid;
+        // Convert current_bid to array if it's not one
+        if (!Array.isArray(product.current_bid)) {
+            product.current_bid = [product.current_bid];
+        }
+
+        product.current_bid.push(current_bid);
         await product.save();
 
-        // Send the updated product back to the client
-        return res.send(product);
+        // Send back a clean success response
+        return res.status(200).json({ success: true, updated_bid: current_bid });
+    } catch (error) {
+        console.error("Bid placement error:", error);
+        return res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// retrieve other products by same seller
+
+
+// search by keyword
+app.get('/search/:seller', async (req, res) => {
+    const seller = req.params.seller; 
+
+    // Ensure a valid search term was provided
+    if (!seller) {
+        return res.status(400).send({ error: 'Missing Seller' });
+    }
+    try {
+        // search mongo by seller name
+        const results = await productSchema.find({
+            $or: [
+                { seller_name: { $regex: seller, $options: 'i' } },
+            ],
+        });
+        // Send the results back to the client
+        if (results.length > 0 ) {
+            return res.send(results);
+        } else {
+           return res.status(404).send({ message: 'No Results Found' });
+        }
     } catch (error) {
         res.status(500).send({ error: error.message });
     }
 });
+
 
 module.exports = app;
