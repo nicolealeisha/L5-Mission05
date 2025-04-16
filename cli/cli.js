@@ -17,7 +17,7 @@ function isNumber(n) {
 }
 
 function printDebug(options, command) {
-    if (options.debug) {
+    if (options && options.debug) {
         console.error('Called %s with options ', command.name(), options, command.args);
     } 
 }
@@ -154,17 +154,13 @@ program
 program
     .command('import')
     .alias('i')
-    .description('Import auction items from JSON file. default: downloaded/database-export.json')
-    .option('--file', 'specify path to JSON file to import')
+    .description('Import auction items from: downloaded/database-export.json')
     .option('--debug', 'output extra debugging')
-    .action((jsonfile, options, command) => {
+    .action((options, command) => {
         printDebug(options, command);
         const __dirname = path.resolve();
-        if (options.file) {
-            jsonfile = options.file;
-        } else {
-            jsonfile = path.resolve(path.join(__dirname,"downloaded", "database-export.json"));
-        }
+        const jsonfile = path.resolve(path.join(__dirname,"downloaded", "database-export.json"));
+        console.log("💾 Database import: ", path.basename(jsonfile));
         if (fs.existsSync(jsonfile)) {
             const data = JSON.parse(fs.readFileSync(jsonfile, 'utf8'));
             console.log(`Imported data: ${ data.length}`);
@@ -173,12 +169,28 @@ program
             console.error(`File ${jsonfile} does not exist`);
         }
     });
-// const  firstArg = argv.argv[1];
+
+    program
+    .command('importfile')
+    .description('Import auction items from JSON file. default: downloaded/database-export.json')
+    .argument('<filename>', 'specify path to JSON file to import')
+    .action((filename, options, command) => {
+        const __dirname = path.resolve();
+        let jsonfile;
+        jsonfile = path.resolve(filename);
+        console.log("💾 Database import: ", path.basename(jsonfile));
+        if (fs.existsSync(jsonfile)) {
+            const data = JSON.parse(fs.readFileSync(jsonfile, 'utf8'));
+            console.log(`Imported data: ${ data.length}`);
+            importAuctionItems(data);
+        } else {
+            console.error(`File ${jsonfile} does not exist`);
+        }
+    });
+
 const  firstArg = argv[1];
 
 const cli = (firstArg) => {
-        // console.log(firstArg);
-
     if (process.env.RUNNINGTEST === 'true') {
         console.log(`exitOverride ${process.env.RUNNINGTEST}`)
         program.exitOverride(argv);
@@ -189,7 +201,6 @@ const cli = (firstArg) => {
         console.log(`Connected to ${dbstring} with ${itemCount} auction items`);
     }
     program.parse(process.argv);
-
 }
 cli()
 export default { cli,program } 
