@@ -58,4 +58,34 @@ app.post('/bid/:id', async (req, res) => {
     }
 });
 
+// retrieve other products by same seller
+
+
+// search by keyword
+app.get('/search/:seller', async (req, res) => {
+    const seller = req.params.seller; 
+
+    // Ensure a valid search term was provided
+    if (!seller) {
+        return res.status(400).send({ error: 'Missing Seller' });
+    }
+    try {
+        // search mongo by seller name
+        const results = await productSchema.find({
+            $or: [
+                { seller_name: { $regex: seller, $options: 'i' } },
+            ],
+        });
+        // Send the results back to the client
+        if (results.length > 0 ) {
+            return res.send(results);
+        } else {
+           return res.status(404).send({ message: 'No Results Found' });
+        }
+    } catch (error) {
+        res.status(500).send({ error: error.message });
+    }
+});
+
+
 module.exports = app;

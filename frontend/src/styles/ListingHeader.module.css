@@ -44,6 +44,14 @@ a:hover{
     gap: 20px; 
 }
 
+@media (max-width: 850px) {
+
+    .listingNavbar, .listingNavbar a {
+        font-size: 12px;
+        gap: 10px;
+    }
+
+}
 
 @media (max-width: 320px) {
    .mobHide{
@@ -51,7 +59,7 @@ a:hover{
    }
 
    .listingNavbar{
-    font-size: 14px;
+    font-size: 12px;
    }
 
 }
