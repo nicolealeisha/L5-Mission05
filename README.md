@@ -15,14 +15,14 @@
 **Upon downloading the files, and creation of a mongoDB titled 'mission-05' on
 server http://127.0.0.1:27017, the user will need to run**
 
-### Method 1
+### Method 1 (Nicole)
 
 ```sh
 node createProducts.js
 ```
 **This will initialise the database with dummy products.**
 
-### Method 2
+### Method 2 (Tom)
 
 ```sh
 cli/cli import
@@ -33,6 +33,10 @@ cli/cli import
 
 ```sh
 node server.js
+
+npm run start
+
+npm run test
 ```
-**to start the server.**
+**to start and test the server.**
 
