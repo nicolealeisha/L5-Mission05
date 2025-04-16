@@ -6,8 +6,7 @@ import Listing from './pages/Listing';
 import SearchResults from './pages/SearchResults';
 
 function App() {
-
-
+  
   return (
     <>
       <Router>
