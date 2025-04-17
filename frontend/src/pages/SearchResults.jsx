@@ -59,6 +59,9 @@ function Results() {
                     <div>No results data available</div>
                 )}
             </div>
+            <div className={styles.resultsContainer}>
+                <img src="/images/mock-results.jpg" width="99%" />
+            </div>
         </>
     );
 }
