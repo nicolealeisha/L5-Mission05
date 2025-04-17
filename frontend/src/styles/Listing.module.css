@@ -43,12 +43,15 @@ h3{
     margin-left: 20px;
     margin-right: 28px;
     width: calc(60% - 48px);
-    position: relative; /* Make sure the watchlist button is positioned relative to this */
+    position: relative;
 }
 
 .imgs{
     width: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .listingImage{

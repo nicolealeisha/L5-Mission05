@@ -93,17 +93,20 @@ function ListingRHSide() {
             {listing ? (
                 <>
                     <h1>{listing.title}</h1>
-
                     <div className={styles.listingInfo}>
                         <p className={styles.listDate}>
                         Closes: {timeRemaining} <br />
                         {formattedDate} <br />
                         </p>
+                        {(timeRemaining != 'Auction ended') &&
+                        <>
                         <button className={styles.watchlistBtn}>
                         <FontAwesomeIcon icon={faBinoculars} className={`${styles.faIcon} ${styles.watchlistIcon}`} />
                         Add to Watchlist
                         </button>
                         <p className={styles.watchlistCount}>5 others watchlisted</p>
+                        </>
+                        }
                     </div>
 
                     <div className={styles.priceContainer}>
@@ -112,16 +115,17 @@ function ListingRHSide() {
                         <h2 className={styles.price}>${listing.start_price}</h2>
                         </> :
                         <>
-                        <p>Current bid</p>
+                        <p>{(timeRemaining == 'Auction ended') ? 'Final bid' : `Current bid`}</p>
                         <h2 className={styles.price}>${listing.current_bid[listing.current_bid.length - 1]}</h2>
                         </>}
 
                         {(timeRemaining == 'Auction ended') 
-                            ? <button className={`${styles.bidBtn} ${styles.greyBtn}`} onClick={(()=> alert('Auction ended'))}>Place bid</button>
+                            ? <button className={`${styles.bidBtnUnavailable}`} onClick={(()=> alert('Auction ended'))}>Place bid</button>
                             : <button className={`${styles.bidBtn} ${styles.blueBtn}`} onClick={(()=> setBidOverlay(true))}>Place bid</button>
                         }
-                        <button className={`${(timeRemaining == 'Auction ended') ?  `${styles.greyBtn} ${styles.bidBtn}` : `${styles.blueBtn}`} ${styles.buyBtn}`}>Buy Now</button>
-                        <button className={`${styles.offerBtn} ${styles.greyBtn}`}>Make offer</button>
+                        {/* buy now unavailable if auction ended or reserve price met */}
+                        <button className={`${(timeRemaining == 'Auction ended' || (listing.reserve_price > 0 && listing.reserve_price < listing.current_bid[listing.current_bid.length - 1])) ?  `${styles.bidBtnUnavailable}` : `${styles.blueBtn}`} ${styles.buyBtn}`}>Buy Now</button>
+                        <button className={`${(timeRemaining == 'Auction ended' || (listing.reserve_price > 0 && listing.reserve_price < listing.current_bid[listing.current_bid.length -1])) ? `${styles.bidBtnUnavailable}` : `${styles.greyBtn}`}`}> Make offer</button>
                         <p className={styles.reserveTxt}>
                             {(listing.reserve_price === 0 ) && 'No reserve' }
                             {(listing.reserve_price > 0 && listing.reserve_price < listing.current_bid[listing.current_bid.length - 1]) && `Reserve met`}
