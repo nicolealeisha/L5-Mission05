@@ -4,7 +4,7 @@ const app = express();
 
 // search by keyword
 app.get('/search/:kw', async (req, res) => {
-    const keyword = req.params.kw; 
+    const keyword = req.params.kw;
 
     // Ensure a valid search term was provided
     if (!keyword) {
@@ -22,10 +22,10 @@ app.get('/search/:kw', async (req, res) => {
             ],
         });
         // Send the results back to the client
-        if (results.length > 0 ) {
+        if (results.length > 0) {
             return res.send(results);
         } else {
-           return res.status(404).send({ message: 'No Results Found' });
+            return res.status(404).send({ message: 'No Results Found' });
         }
     } catch (error) {
         res.status(500).send({ error: error.message });
