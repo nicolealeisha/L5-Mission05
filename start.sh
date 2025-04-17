@@ -2,11 +2,14 @@
 # source: https://stackoverflow.com/questions/37954868/how-can-i-split-my-screen-in-3-using-tmux-from-a-bash-script 
 
 # SERVER
-cd backend
+cd ../L5-Mission05/backend
+cd ../../L5-Mission05/backend
+pwd
 tmux new-session -d npm run start
 
 # FRONTEND
-cd ../frontend
+cd ../L5-Mission05/frontend
+cd ../../L5-Mission05/frontend
 tmux split-window -v npm run start
 
 
@@ -19,3 +22,6 @@ tmux select-layout even-vertical
 
 # Now attach to the window
 tmux attach-session
+
+open http://localhost:5173/ # macOS
+xdg-open http://localhost:5173/ # linux
