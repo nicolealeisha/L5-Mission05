@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "vite",
-    "test": "react-scripts test --watchAll --coverage"
+    "test": "export SKIP_PREFLIGHT_CHECK=true ; react-scripts test --watchAll --coverage",
+    "strict": "react-scripts test --watchAll --coverage"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/jest": "^29.5.14",
