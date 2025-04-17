@@ -16,6 +16,7 @@ h2{
 
 .listingRHDetails > p{
     color: #0076BC;
+    font-size: 14px;
 }
 
 .listingDetailsBtn{
@@ -43,4 +44,5 @@ h2{
     border-radius: 4px;
     padding: 0 12px;
     margin: 12px 0 0 0;
+    font-size: 12px;
 }

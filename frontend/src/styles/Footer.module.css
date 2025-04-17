@@ -46,10 +46,30 @@ a:hover {
 footer {
     justify-content: center;
     align-items: center;
-    border: 1px black solid;
 }
 
+.firstLineFooter {
+    background-color: white;
+    display: -ms-inline-grid;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
 
+nav div {
+    /* border: 1px solid #85807c */
+}
+
+/* 
+thomas can you change this please and reference your items more specifically
+so that it doesn't affect other items in the project
+it's throwing off my header layout  */
+
+/* nav div a {
+    display: inline-grid;
+} */
 
 div.firstLineFooter {
     width: 100%;

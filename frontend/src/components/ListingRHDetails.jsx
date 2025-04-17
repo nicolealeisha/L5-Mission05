@@ -57,7 +57,7 @@ function ListingDetails() {
                     <h2>Product at a glance</h2>
 
                     <button className={`${styles.listingDetailsBtn}`} onClick={() => setExpandListing(!expandListing)}>
-                        <p>About Product</p>
+                        <p className={styles.detailHeader}>About Product</p>
                         <p>{expandListing ? <FontAwesomeIcon icon={faMinus} /> : <FontAwesomeIcon icon={faPlus} />}</p>
                     </button>    
                     {expandListing && 

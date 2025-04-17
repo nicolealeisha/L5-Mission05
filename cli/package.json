@@ -1,0 +1,20 @@
+{
+  "name": "mongo-loader",
+  "version": "1.0.0",
+  "description": "🧜‍♂️ Mongo Loader 🔥",
+  "main": "cli.js",
+  "scripts": {
+    "test": "sh test.sh",
+    "dev": "nodemon cli.js",
+    "start": "node cli.js",
+    "cli": "./cli.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "i": "^0.3.7",
+    "mongoose": "^8.13.2"
+  },
+  "type": "module"
+}

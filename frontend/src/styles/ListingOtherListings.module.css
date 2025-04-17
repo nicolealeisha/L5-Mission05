@@ -1,0 +1,100 @@
+.header{
+    padding: 8px;
+}
+
+.otherListingsContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 8px 0;
+    align-items: center;
+    overflow-x: auto;
+    padding: 8px 8px 20px 8px;
+}
+
+.otherListingsContainer a:hover{
+    text-decoration: none;
+}
+
+.otherListingItem{
+    min-width: 250px;
+    max-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 8px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+
+.imgContainer{
+    width: 100%;
+    max-height: 250px;
+    aspect-ratio: 1 / 1; /* Keeps it square */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: clip;
+}
+
+.otherListingImage{
+    width: auto;
+    height: 200px;
+    position: relative;
+    overflow: clip;
+}
+
+.watchlist{
+    width: 68px;
+    cursor: pointer;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+}
+
+.otherListingHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    height: 28px;
+}
+
+.otherListingInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.otherListingInfo > p, .otherListingInfo > h3 {
+    font-size: 12px;
+    margin: 4px 8px;
+}
+
+.otherListingPrice{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    padding: 8px;
+}
+
+.buyHeader{
+    font-size: 8px;
+}
+
+.buyPrice{
+    margin: 0;
+}
