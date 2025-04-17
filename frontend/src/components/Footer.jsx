@@ -81,7 +81,7 @@ function Footer() {
 
                 <nav className={styles.mobileFooter}>
                     <div className={styles.copyright}>
-                        <p>  © 2025 Trade Me Limited </p>
+                        <p>© 2025 Trade Me Limited </p>
                     </div>
                     <div className={styles.mobileFooter}>
                         <p>

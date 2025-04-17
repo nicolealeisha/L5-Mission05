@@ -6,11 +6,11 @@ const corsOptions = {
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    // credentials: true,
 };
 
 const app = express();
-app.use(express.json()); 
+app.use(express.json());
 
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
@@ -30,7 +30,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
     .catch(err => {
         console.error("Error connecting to MongoDB:", err);
     });
-    
+
 
 // Import routes
 const productListingRoute = require('./routes/productListing');

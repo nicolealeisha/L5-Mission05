@@ -2,6 +2,7 @@ footer nav div {
     border: 1px red solid;
     min-height: 256px;
     background-color: #eee;
+    display: inline-grid;
 }
 
 footer nav a {
@@ -27,7 +28,9 @@ div.firstLineFooter {
 footer nav div a {
     display: inline-grid;
     background-color: #efffdf;
-
+    max-width: 160px;
+    /* max-height: 32px; */
+    /* line-height: 12px; */
 }
 
 a {
@@ -58,19 +61,6 @@ footer {
     width: 100%;
 }
 
-nav div {
-    /* border: 1px solid #85807c */
-}
-
-/* 
-thomas can you change this please and reference your items more specifically
-so that it doesn't affect other items in the project
-it's throwing off my header layout  */
-
-/* nav div a {
-    display: inline-grid;
-} */
-
 div.firstLineFooter {
     width: 100%;
 }
@@ -89,13 +79,7 @@ div.firstLineFooter {
 
 .firstLineFooter a {}
 
-footer nav div a {
-    max-width: 160px;
-    max-height: 32px;
-    /* line-height: 12px; */
-    background-color: yellow;
 
-}
 
 .mobileFooter {
     background-color: aquamarine;
