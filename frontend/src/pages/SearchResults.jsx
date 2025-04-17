@@ -60,7 +60,7 @@ function Results() {
                 )}
             </div>
             <div className={styles.resultsContainer}>
-                <img src="/images/mock-results.jpg" width="99%" />
+                <img src="/images/mock-results.jpg" height="443px" />
             </div>
         </>
     );

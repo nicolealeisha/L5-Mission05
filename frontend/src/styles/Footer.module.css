@@ -1,69 +1,109 @@
+footer nav div {
+    border: 1px red solid;
+    min-height: 256px;
+    background-color: #eee;
+}
+
+footer nav a {
+    background-color: beige;
+    border: 1px black dotted;
+    color: #333;
+}
+
+footer nav {
+    margin-left: 25%;
+    /* margin-left: -128px; */
+}
+
+footer nav {}
+
+div.firstLineFooter {
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 0; */
+    flex-direction: row;
+}
+
+footer nav div a {
+    display: inline-grid;
+    background-color: #efffdf;
+
+}
+
 a {
     list-style: none;
 }
+
 a.logo img {
     position: relative;
     max-width: 140px;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
+
 footer {
-    background-color: white;
     justify-content: center;
     align-items: center;
+    border: 1px black solid;
 }
-nav, .firstLineFooter {
-    background-color: white;
-    display: -ms-inline-grid;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-nav div {
-/* border: 1px solid #85807c */
-}
-nav div a {
-    display: inline-grid;
-}
+
+
+
 div.firstLineFooter {
     width: 100%;
 }
 
 .firstLineFooter a {
     display: inline-grid;
-    grid-template-columns: repeat(6 , 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     /* max-width: 160px; */
     min-width: 150px;
     font-size: 16px;
     overflow: nowrap;
+
 }
-.firstLineFooter a , nav div a  {
+
+.firstLineFooter a {}
+
+footer nav div a {
     max-width: 160px;
     max-height: 32px;
-    line-height: 24px;
-
+    /* line-height: 12px; */
+    background-color: yellow;
 
 }
-.gridBox div, .gridBox div a , .gridBox a {
-    width:16%;
+
+.mobileFooter {
+    background-color: aquamarine;
+}
+
+.copyright {}
+
+.gridBox div,
+.gridBox div a,
+.gridBox a {
+    width: 16%;
     flex-direction: column;
     /* height: 256px; */
-        color: #85807c;
+    color: #85807c;
     font-size: 12px;
 }
-nav div{
+
+footer nav div {
     justify-content: center;
     align-items: center;
     /* padding: 16px; */
     /* background-color: grey;; */
     /* height: 256px; */
 }
-.orange_line div, div.orange_line, .orange_line a {
+
+.orange_line div,
+div.orange_line,
+.orange_line a {
     background-color: #FF6A00;
     height: 4px;
     width: 100%;
@@ -71,14 +111,20 @@ nav div{
     display: block;
     padding: 0;
 }
-.footer div, .grid-container div div a, .gridCol a, .gridCol  {
+
+.footer div,
+.grid-container div div a,
+.gridCol a,
+.gridCol {
     width: 100%;
     /* padding-bottom: 10px; */
 }
+
 .grid-container {
     display: flex;
     flex-direction: row;
 }
+
 .gridRow {
     display: flex;
     flex-direction: column;
@@ -100,7 +146,8 @@ nav div{
     text-decoration-style: solid;
     text-decoration-thickness: auto
 }
-.gridCol{
+
+.gridCol {
     /* display: flexbox; */
     /* flex-direction: column; */
     justify-content: space-between;
@@ -108,23 +155,37 @@ nav div{
 }
 
 
-.faIcon{
+.faIcon {
     padding: 0 5px;
 }
 
-.deskHide{
+.deskHide {
     display: none;
 }
-div#box1, div#box2, div#box3, div#box4, div#box5, div#bo61 {
+
+footer nav#box1,
+footer nav#box2,
+footer nav#box3,
+footer nav#box4,
+footer nav#box5,
+footer nav#box6 {
     display: grid;
-    grid-template-columns: repeat(6 , 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     /* max-width: 160px; */
     min-width: 150px;
     font-size: 16px;
     overflow: nowrap;
+    border: 1px red dashed;
 }
+
+footer nav#box2,
+footer nav#box4,
+footer nav#box6 {
+    /* background-color: violet; */
+}
+
 /* #box1 a, #box2 a, #box3, #box4, #box5, #bo61 {
     grid-row: 1;
     grid-column: 1;
@@ -135,22 +196,24 @@ div#box1, div#box2, div#box3, div#box4, div#box5, div#bo61 {
     body {
         /* background-color:cornsilk    */
     }
+
     .logo {
-        content: url('/images/mob-logo.png'); 
+        content: url('/images/mob-logo.png');
         height: auto;
-      }
+    }
 
 
-    .firstLineFooter a, footer nav div a  {
-        grid-template-columns: repeat(1 , 1fr);
+    .firstLineFooter a,
+    footer nav div a {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
 @media (max-width: 1000px) {
-    body {
-        /* background-color: violet; */
-    }
-    .firstLineFooter a, footer nav div a  {
+    body {}
+
+    .firstLineFooter a,
+    footer nav div a {
         grid-template-columns: repeat(3, 1fr);
         /* background-color: violet; */
 

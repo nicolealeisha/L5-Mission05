@@ -3,7 +3,7 @@ import styles from '../styles/Footer.module.css';
 function Footer() {
     return (
         <>
-            <footer id="footer" className={styles.footer}>
+            <footer className={styles.footer}>
                 <div className={styles.orange_line}> </div>
                 <nav>
                     <div className={styles.firstLineFooter}>
@@ -70,7 +70,7 @@ function Footer() {
                 </nav>
 
                 <nav className={styles.gridRow} id={styles["box6"]}>
-                    <div className="grid-col navItem">
+                    <div className={styles.gridCol}>
                         <a href="/#">Community</a>
                         <a href="/#">Help</a>
                         <a href="/#">Announcements</a>
@@ -79,13 +79,19 @@ function Footer() {
                     </div>
                 </nav>
 
-                <nav className={styles.gridRow}>
-                    <div className={styles.gridCol}>
-                        <p>                            © 2025 Trade Me Limited </p>
+                <nav className={styles.mobileFooter}>
+                    <div className={styles.copyright}>
+                        <p>  © 2025 Trade Me Limited </p>
                     </div>
-                    <div className={styles.gridCol}>
+                    <div className={styles.mobileFooter}>
                         <p>
-                            Desktop site About Us Careers Advertise Privacy policy Terms & conditions Contact Us
+                            <a href="/#">Desktop site</a>
+                            <a href="/#">About Us</a>
+                            <a href="/#">Careers </a>
+                            <a href="/#">Advertise </a>
+                            <a href="/#">Privacy policy</a>
+                            <a href="/#">Terms & conditions</a>
+                            <a href="/#">Contact Us</a>
                         </p>
                     </div>
                 </nav>
