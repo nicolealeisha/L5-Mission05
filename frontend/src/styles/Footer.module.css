@@ -16,7 +16,9 @@ footer nav {
     /* margin-left: -128px; */
 }
 
-footer nav {}
+footer nav {
+    display: inline-grid;
+}
 
 div.firstLineFooter {
     justify-content: space-between;

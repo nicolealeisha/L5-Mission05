@@ -6,11 +6,10 @@ import { useEffect, useState } from 'react';
 
 function Results() {
     const { kw } = useParams(); // Extract keywkord params from the URL
-    const [results, setResults] = useState(null);
+    const [results, setResults] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const keyword = kw;
-    console.log(kw, keyword); // Log the keyword to check if it's being passed correctly
 
     // Fetch results data from the backend using the keyword
     useEffect(() => {
@@ -29,6 +28,8 @@ function Results() {
                 }
 
                 const data = await response.json();
+                console.log(`[keyword] ${keyword}  [results data length] ${data.length}`); // Log the keyword to check if it's being passed correctly
+
                 setResults(data);  // Set the results data in state
             } catch (err) {
                 setError(err.message);  // Set error if the API call fails
@@ -49,15 +50,16 @@ function Results() {
             {/* <ResultsBreadcrumb /> */}
             {/* Render results details here */}
             <div className={styles.resultsContainer}>
-                {results ? (
+                {results.length > 0 ? (
                     <div>
+                        {/* <img src={results[0].image} /> */}
                         <h1>{results[0].title}</h1>
                         <p>{results[0].title}</p>
-                        <p>{results.description}</p>
-                        <div>Results data is funky. {results.length} results.</div>
+                        <p>{results[0].description}</p>
+                        <div>{results.length} results found for "{keyword}".</div>
                     </div>
                 ) : (
-                    <div>No results data available</div>
+                    <div>No results data available for "{keyword}".</div>
                 )}
             </div>
             <div className={styles.resultsContainer}>
