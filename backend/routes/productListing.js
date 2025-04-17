@@ -62,7 +62,7 @@ app.post('/bid/:id', async (req, res) => {
 
 
 // search by keyword
-app.get('/search/:seller', async (req, res) => {
+app.get('/sellersearch/:seller', async (req, res) => {
     const seller = req.params.seller; 
 
     // Ensure a valid search term was provided

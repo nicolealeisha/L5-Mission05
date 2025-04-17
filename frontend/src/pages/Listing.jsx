@@ -60,7 +60,7 @@ function Listing() {
             if (!listing) return;
 
             try {
-                const response = await fetch(`http://localhost:3000/search/${listing.seller_name}`);
+                const response = await fetch(`http://localhost:3000/sellersearch/${listing.seller_name}`);
                 const otherListings = await response.json();
                 setOtherListings(otherListings);
 
