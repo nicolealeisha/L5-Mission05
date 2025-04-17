@@ -21,13 +21,14 @@ app.get('/search/:kw', async (req, res) => {
                 { subcategory: { $regex: keyword, $options: 'i' } },
             ],
         });
-        if (results.length > 0) { // Send the results back to the client
+        // Send the results back to the client
+        if (results.length > 0) {
             return res.status(200).send(results);
         } else {
             return res.status(200).send({ message: 'No Results Found' });
         }
     } catch (error) {
-        res.status(500).send({ error: `productSchema.find ${error.message}` });
+        res.status(500).send({ error: error.message });
     }
 });
 

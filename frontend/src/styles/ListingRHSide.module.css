@@ -98,7 +98,6 @@ h3{
     padding: 12px 8px;
     font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
     border: none;
     border-radius: 4px;
     margin: 4px;
@@ -114,6 +113,10 @@ h3{
     color: #0076BC;
 }
 
+.bidBtnUnavailable{
+    display: none;
+}
+
 .reserveTxt, .bidTxt{
     color: #8A8685;
     font-size: 12px;
@@ -124,6 +127,7 @@ h3{
 .bidTxt{
     margin-bottom: 12px;
 }
+
 
 .buyerProtectionContainer{
     display: flex;

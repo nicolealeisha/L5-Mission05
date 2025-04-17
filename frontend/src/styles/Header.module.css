@@ -231,7 +231,6 @@ a:hover{
         flex-direction: column;
         align-items: center;
     }
-
     
     .mobHide{
         display: none;
@@ -251,6 +250,10 @@ a:hover{
 
     .searchHidden{
         display:none;
+    }
+
+    .navExtendedSearch input {
+        width: 100%;
     }
 
     .searchActive{
