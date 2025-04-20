@@ -15,6 +15,7 @@ function Results() {
     // Fetch results data from the backend using the keyword
     useEffect(() => {
         const fetchResults = async () => {
+            console.log(keyword)
             try {
                 const response = await fetch(`http://localhost:3000/search/${keyword}`, {
                     method: 'GET',

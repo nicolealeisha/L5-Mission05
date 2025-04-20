@@ -2,15 +2,16 @@ const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
 
+
 const corsOptions = {
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
+    // credentials: true,
 };
 
 const app = express();
-app.use(express.json()); 
+app.use(express.json());
 
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
@@ -30,15 +31,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
     .catch(err => {
         console.error("Error connecting to MongoDB:", err);
     });
-    
+
 
 // Import routes
-const productListingRoute = require('./routes/productListing');
+// const productListingRoute = require('./routes/productListing');
 const searchResultsRoute = require('./routes/searchResults');
 const shutdownRoute = require('./routes/shutdownRoute');
 
+
 // Set up routes
-app.use(productListingRoute);
+// app.use(productListingRoute);
 app.use(searchResultsRoute);
 app.use(shutdownRoute);
 
