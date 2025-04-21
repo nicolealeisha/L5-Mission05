@@ -1,6 +1,7 @@
 # Mission-05
 
-**Recreate Trade Me with a more thoughtful user flow**
+The purpose of this project was to work in a small team to recreate Trade Me with a more thoughtful user flow.
+Tom was responsible for the search page, and Nicole was responsible for the product page.
 
 ### Prerequisites
 
