@@ -1,15 +1,18 @@
 # Mission-05
 
-The purpose of this project was to work in a small team to recreate Trade Me with a more thoughtful user flow.
-Tom was responsible for the search page, and Nicole was responsible for the product page.
+* The purpose of this project was to work in a small team to recreate Trade Me with a more thoughtful user flow, following wireframes provided by UX designers.
+* Wireframe source: <https://www.figma.com/design/TRIX4MzmdJZcQ0TmvK37bH/Mission-5-TradeMe-Group-3?node-id=0-1&p=f>
+* Tom was responsible for the search page, and Nicole was responsible for the product page.
+* Github repo: <https://github.com/nicolealeisha/L5-Mission05
 
 ### Prerequisites
 
 **The project utilises the following:**
 
-* **Github repo: <https://github.com/nicolealeisha/L5-Mission05>**
-* **npm**
-* `npm install`
+* NPM must be initilised by running the following command: 
+```sh
+npm install
+```
 
 ## Back End Initalisation
 
