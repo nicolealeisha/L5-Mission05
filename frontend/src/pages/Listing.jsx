@@ -79,6 +79,11 @@ function Listing() {
         runAll();
     }, [listingId, navigate]);
     
+    // Filter out the current listing from other listings and expired listings    
+    const filteredListings = otherListings
+    .filter(other => other.title !== listing.title)
+    .filter(other => new Date(other.auction_end_date) > new Date());
+
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -105,7 +110,11 @@ function Listing() {
                     <>
                         <div className={styles.listingLHside}>
                             <div className={styles.imgs}>
+                                {(listing.image === undefined || listing.image.length === 0) ? (
+                                    <img src='/images/noimg.png' alt='Placeholder' className={styles.listingImage} />
+                                ) : (
                                 <img src={listing.image} alt={listing.title} className={styles.listingImage} />
+                                )}
                                 <img src='/images/watchlist-btn.png' alt='Watchlist' className={styles.watchlist} />
                             </div>
 
@@ -170,9 +179,12 @@ function Listing() {
                 )}
             </div>
             {/* hide this section if only 1 listing, as it returns current listing */}
-            {(otherListings.length > 1) &&
+            {(filteredListings.length > 1) &&
             <div className={styles.otherListings}>
-                <ListingOtherListings listing={listing} otherListings={otherListings} />
+                <h2 className={styles.otherListingHeader}>Seller's other listings</h2>
+                <div className={styles.otherListingsContainer}>
+                    <ListingOtherListings otherListings={filteredListings} />
+                </div>
             </div>}
         </>
     );

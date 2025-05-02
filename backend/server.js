@@ -37,12 +37,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/mission-05', {
 // const productListingRoute = require('./routes/productListing');
 const searchResultsRoute = require('./routes/searchResults');
 const shutdownRoute = require('./routes/shutdownRoute');
+const filterListingsRoute = require('./routes/filterListings');
 
 
 // Set up routes
 // app.use(productListingRoute);
 app.use(searchResultsRoute);
 app.use(shutdownRoute);
+app.use(filterListingsRoute);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

@@ -47,7 +47,7 @@ function Header() {
             <header className={styles.secHeader}>
                 <nav className={styles.secNavbar}>
                     <div className={styles.leftGroup}>
-                    <img className={styles.logo} src="/images/logo.png" alt="Trade Me Logo" />
+                    <a href='/'><img className={styles.logo} src="/images/logo.png" alt="Trade Me Logo" /></a>
                         <ul className={styles.secLeftNavList}>
                             <li className={`${styles.navItem} ${styles.mobHide} ${styles.navItemBrowse}`}><a href="/browse">Browse <FontAwesomeIcon icon={faCaretDown} className={`${styles.faIcon} ${styles.browseBorder}`} /></a></li>
                             <li className={styles.navItem}>
