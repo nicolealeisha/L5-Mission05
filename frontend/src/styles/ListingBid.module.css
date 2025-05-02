@@ -248,7 +248,7 @@ button{
 
 /* Media Queries */
 
-@media (max-width: 320px) {
+@media (max-width: 520px) {
 
     .listingBidForm{
         width: 100%;
